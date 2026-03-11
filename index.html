@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perfember — Remember everything you achieved. Never scramble for a review again.</title>
 <meta name="description" content="Log a win in 5 seconds. AI writes your performance review. Your personal career journal that makes HR effortless — for you or your whole team.">
+<!-- Google Analytics 4 — replace G-XXXXXXXXXX with your real Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Cloudflare Web Analytics — replace token once enabled in Cloudflare dashboard -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "CLOUDFLARE_TOKEN_HERE"}'></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -107,6 +119,38 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.06); }
   padding: 8px; color: var(--slate-700);
 }
 .mobile-menu-btn svg { width: 24px; height: 24px; }
+
+/* ─── LANGUAGE SWITCHER ─── */
+.lang-switcher { position: relative; }
+.lang-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: none; border: 1.5px solid var(--slate-200);
+  border-radius: 8px; padding: 6px 10px; cursor: pointer;
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  color: var(--slate-600); transition: all 0.2s;
+}
+.lang-btn:hover { border-color: var(--emerald-400); color: var(--emerald-700); }
+.lang-menu {
+  display: none; position: absolute; top: calc(100% + 8px); right: 0;
+  background: white; border: 1px solid var(--slate-200);
+  border-radius: 12px; padding: 6px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  z-index: 200; min-width: 160px;
+}
+.lang-menu.open { display: block; }
+.lang-menu button {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none; padding: 8px 12px;
+  border-radius: 8px; font-family: var(--font-body);
+  font-size: 13px; font-weight: 500; color: var(--slate-700);
+  cursor: pointer; transition: background 0.15s;
+}
+.lang-menu button:hover { background: var(--slate-50); }
+
+/* RTL support for Arabic */
+html[dir="rtl"] { direction: rtl; }
+html[dir="rtl"] .lang-menu { right: auto; left: 0; }
+html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
 
 /* ─── HERO ─── */
 .hero {
@@ -677,11 +721,32 @@ footer {
       <div class="nav-logo-text">Perfember</div>
     </a>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#how">How It Works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="https://app.perfember.com/login" class="nav-signin">Sign in</a>
-      <a href="https://app.perfember.com/register" class="nav-cta">Get started free</a>
+      <a href="#features" data-i18n="nav_features">Features</a>
+      <a href="#how" data-i18n="nav_how">How It Works</a>
+      <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+
+      <!-- Language Switcher -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" onclick="toggleLangMenu()" aria-label="Language">
+          <span id="currentLangFlag">🌐</span>
+          <span id="currentLangLabel">EN</span>
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button onclick="setLang('en')">🇬🇧 English</button>
+          <button onclick="setLang('ar')">🇸🇦 العربية</button>
+          <button onclick="setLang('ja')">🇯🇵 日本語</button>
+          <button onclick="setLang('fr')">🇫🇷 Français</button>
+          <button onclick="setLang('es')">🇪🇸 Español</button>
+          <button onclick="setLang('de')">🇩🇪 Deutsch</button>
+          <button onclick="setLang('zh')">🇨🇳 中文</button>
+          <button onclick="setLang('hi')">🇮🇳 हिंदी</button>
+          <button onclick="setLang('tl')">🇵🇭 Filipino</button>
+        </div>
+      </div>
+
+      <a href="https://app.perfember.com/login" class="nav-signin" data-i18n="nav_signin">Sign in</a>
+      <a href="https://app.perfember.com/register" class="nav-cta" data-i18n="nav_cta">Get started free</a>
     </div>
     <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -693,44 +758,44 @@ footer {
 <section class="hero">
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
-    For individuals &amp; managers — powered by AI
+    <span data-i18n="hero_badge">For individuals &amp; managers — powered by AI</span>
   </div>
-  <h1>Stop scrambling<br><span class="accent">for performance reviews.</span></h1>
-  <p class="hero-sub">Everyone dreads review season — employees who can't remember what they did, managers who can't remember what their team did. Perfember fixes both. Log anything in 5 seconds. AI writes the review.</p>
+  <h1><span data-i18n="hero_h1a">Stop scrambling</span><br><span class="accent" data-i18n="hero_h1b">for performance reviews.</span></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Everyone dreads review season — employees who can't remember what they did, managers who can't remember what their team did. Perfember fixes both. Log anything in 5 seconds. AI writes the review.</p>
   <div class="hero-cta-row">
     <a href="https://app.perfember.com/register" class="btn btn-primary">
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      Start for free
+      <span data-i18n="hero_cta_primary">Start for free</span>
     </a>
-    <a href="#how" class="btn btn-secondary">See How It Works</a>
+    <a href="#how" class="btn btn-secondary" data-i18n="hero_cta_secondary">See How It Works</a>
   </div>
   <div class="hero-proof">
-    <span>🎙️ Voice, photos & text</span>
+    <span data-i18n="hero_proof1">🎙️ Voice, photos & text</span>
     <span class="hero-proof-divider"></span>
-    <span>🤖 AI writes your review for you</span>
+    <span data-i18n="hero_proof2">🤖 AI writes your review for you</span>
     <span class="hero-proof-divider"></span>
-    <span>📄 Free for individuals &amp; managers</span>
+    <span data-i18n="hero_proof3">📄 Free for individuals &amp; managers</span>
   </div>
 
   <!-- Value prop cards -->
   <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 900px; margin: 56px auto 0; text-align: left;">
     <div style="background: white; border: 1px solid var(--emerald-200); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(16,185,129,0.07);">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--emerald-600); margin-bottom: 12px;">For you</div>
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--emerald-600); margin-bottom: 12px;" data-i18n="card1_label">For you</div>
       <div style="font-size: 28px; margin-bottom: 12px;">🏆</div>
-      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;">Never forget a win again</div>
-      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Log your achievements, feedback, and goals as they happen. When review time comes — or you're gunning for a pay rise — your case is already built.</div>
+      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;" data-i18n="card1_title">Never forget a win again</div>
+      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;" data-i18n="card1_body">Log your achievements, feedback, and goals as they happen. When review time comes — or you're gunning for a pay rise — your case is already built.</div>
     </div>
     <div style="background: white; border: 1px solid var(--emerald-200); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(16,185,129,0.07);">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--emerald-600); margin-bottom: 12px;">For managers</div>
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--emerald-600); margin-bottom: 12px;" data-i18n="card2_label">For managers</div>
       <div style="font-size: 28px; margin-bottom: 12px;">👥</div>
-      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;">Know your team, always</div>
-      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Log observations about your direct reports in seconds. No more wracking your brain before appraisals — every team member's record is right there, ready to review.</div>
+      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;" data-i18n="card2_title">Know your team, always</div>
+      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;" data-i18n="card2_body">Log observations about your direct reports in seconds. No more wracking your brain before appraisals — every team member's record is right there, ready to review.</div>
     </div>
     <div style="background: white; border: 1px solid var(--slate-200); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--slate-400); margin-bottom: 12px;">For everyone</div>
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--slate-400); margin-bottom: 12px;" data-i18n="card3_label">For everyone</div>
       <div style="font-size: 28px; margin-bottom: 12px;">📝</div>
-      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;">AI writes the review</div>
-      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">When it's time, AI turns months of logs into a polished self-review or team report in minutes. Export to PDF or Word and you're done.</div>
+      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;" data-i18n="card3_title">AI writes the review</div>
+      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;" data-i18n="card3_body">When it's time, AI turns months of logs into a polished self-review or team report in minutes. Export to PDF or Word and you're done.</div>
     </div>
   </div>
 </section>
@@ -1377,6 +1442,182 @@ function showIndustry(id) {
     </div>
   </div>
 </footer>
+
+<script>
+// ─── TRANSLATIONS ───
+const translations = {
+  en: {
+    nav_features: "Features", nav_how: "How It Works", nav_pricing: "Pricing",
+    nav_signin: "Sign in", nav_cta: "Get started free",
+    hero_badge: "For individuals & managers — powered by AI",
+    hero_h1a: "Stop scrambling", hero_h1b: "for performance reviews.",
+    hero_sub: "Everyone dreads review season — employees who can't remember what they did, managers who can't remember what their team did. Perfember fixes both. Log anything in 5 seconds. AI writes the review.",
+    hero_cta_primary: "Start for free", hero_cta_secondary: "See How It Works",
+    hero_proof1: "🎙️ Voice, photos & text", hero_proof2: "🤖 AI writes your review for you", hero_proof3: "📄 Free for individuals & managers",
+    card1_label: "For you", card1_title: "Never forget a win again", card1_body: "Log your achievements, feedback, and goals as they happen. When review time comes — or you're gunning for a pay rise — your case is already built.",
+    card2_label: "For managers", card2_title: "Know your team, always", card2_body: "Log observations about your direct reports in seconds. No more wracking your brain before appraisals — every team member's record is right there, ready to review.",
+    card3_label: "For everyone", card3_title: "AI writes the review", card3_body: "When it's time, AI turns months of logs into a polished self-review or team report in minutes. Export to PDF or Word and you're done.",
+  },
+  ar: {
+    nav_features: "الميزات", nav_how: "كيف يعمل", nav_pricing: "الأسعار",
+    nav_signin: "تسجيل الدخول", nav_cta: "ابدأ مجاناً",
+    hero_badge: "للأفراد والمديرين — بتقنية الذكاء الاصطناعي",
+    hero_h1a: "توقف عن الاستعجال", hero_h1b: "قبل مراجعات الأداء.",
+    hero_sub: "الجميع يخشى موسم التقييم — الموظفون لا يتذكرون ما أنجزوه، والمديرون لا يتذكرون ما حققه فريقهم. Perfember يحل المشكلتين. سجّل أي شيء في 5 ثوانٍ. الذكاء الاصطناعي يكتب التقييم.",
+    hero_cta_primary: "ابدأ مجاناً", hero_cta_secondary: "اكتشف كيف يعمل",
+    hero_proof1: "🎙️ صوت وصور ونص", hero_proof2: "🤖 الذكاء الاصطناعي يكتب تقييمك", hero_proof3: "📄 مجاني للأفراد والمديرين",
+    card1_label: "لك", card1_title: "لا تنسَ إنجازاتك أبداً", card1_body: "سجّل إنجازاتك وملاحظاتك وأهدافك فور حدوثها. حين يحين وقت التقييم — أو تسعى للترقية — ستجد ملفك جاهزاً بالكامل.",
+    card2_label: "للمديرين", card2_title: "تعرّف على فريقك دائماً", card2_body: "سجّل ملاحظاتك عن مرؤوسيك المباشرين في ثوانٍ. لا مزيد من إجهاد الذاكرة قبل التقييمات — سجل كل عضو في الفريق متاح جاهز للمراجعة.",
+    card3_label: "للجميع", card3_title: "الذكاء الاصطناعي يكتب التقييم", card3_body: "حين يحين الوقت، يحوّل الذكاء الاصطناعي شهوراً من التسجيلات إلى تقرير أداء احترافي في دقائق. صدّره بصيغة PDF أو Word وانتهيت.",
+  },
+  ja: {
+    nav_features: "機能", nav_how: "使い方", nav_pricing: "料金",
+    nav_signin: "ログイン", nav_cta: "無料で始める",
+    hero_badge: "個人とマネージャー向け — AI搭載",
+    hero_h1a: "慌てるのはもうやめよう", hero_h1b: "パフォーマンスレビューの前に。",
+    hero_sub: "評価シーズンが来るたびに焦る人は多い — 自分が何をしたか思い出せない従業員、チームの成果を覚えていないマネージャー。Perfemberは両方を解決します。5秒で記録。AIがレビューを書きます。",
+    hero_cta_primary: "無料で始める", hero_cta_secondary: "使い方を見る",
+    hero_proof1: "🎙️ 音声・写真・テキスト対応", hero_proof2: "🤖 AIがレビューを代わりに書く", hero_proof3: "📄 個人・マネージャーともに無料プランあり",
+    card1_label: "あなた自身のために", card1_title: "成果を二度と忘れない", card1_body: "実績、フィードバック、目標をその場で記録。評価の時期が来たとき — あるいは昇給を目指すとき — 証拠はすでに揃っています。",
+    card2_label: "マネージャーのために", card2_title: "チームの状況を常に把握", card2_body: "直属の部下に関する観察を数秒で記録。評価前に頭を抱える必要はもうありません — チーム全員の記録がいつでもすぐ確認できます。",
+    card3_label: "すべての人のために", card3_title: "AIがレビューを書く", card3_body: "必要なときに、AIが数ヶ月分の記録を洗練されたレビュー文書にまとめます。PDFかWordでエクスポートするだけで完了。",
+  },
+  fr: {
+    nav_features: "Fonctionnalités", nav_how: "Comment ça marche", nav_pricing: "Tarifs",
+    nav_signin: "Connexion", nav_cta: "Commencer gratuitement",
+    hero_badge: "Pour les individus & managers — propulsé par l'IA",
+    hero_h1a: "Fini de stresser", hero_h1b: "avant les évaluations.",
+    hero_sub: "Tout le monde redoute la saison des évaluations — les employés qui ne se souviennent plus de ce qu'ils ont fait, les managers qui ont oublié les résultats de leur équipe. Perfember règle les deux. Enregistrez en 5 secondes. L'IA rédige l'évaluation.",
+    hero_cta_primary: "Commencer gratuitement", hero_cta_secondary: "Voir comment ça marche",
+    hero_proof1: "🎙️ Voix, photos & texte", hero_proof2: "🤖 L'IA rédige votre évaluation", hero_proof3: "📄 Gratuit pour les individus & managers",
+    card1_label: "Pour vous", card1_title: "Ne plus jamais oublier une réussite", card1_body: "Enregistrez vos réussites, retours et objectifs au fil du temps. Quand l'évaluation arrive — ou que vous visez une augmentation — votre dossier est déjà prêt.",
+    card2_label: "Pour les managers", card2_title: "Connaître son équipe en permanence", card2_body: "Notez vos observations sur vos collaborateurs en quelques secondes. Plus de prise de tête avant les entretiens — le dossier de chaque membre est là, prêt à consulter.",
+    card3_label: "Pour tout le monde", card3_title: "L'IA rédige l'évaluation", card3_body: "Au moment voulu, l'IA transforme des mois de notes en un document d'évaluation soigné en quelques minutes. Exportez en PDF ou Word, c'est terminé.",
+  },
+  es: {
+    nav_features: "Funciones", nav_how: "Cómo funciona", nav_pricing: "Precios",
+    nav_signin: "Iniciar sesión", nav_cta: "Empezar gratis",
+    hero_badge: "Para individuos y managers — con IA",
+    hero_h1a: "Deja de estresarte", hero_h1b: "antes de las evaluaciones.",
+    hero_sub: "Todos temen la temporada de evaluaciones — empleados que no recuerdan lo que hicieron, managers que no recuerdan lo que logró su equipo. Perfember lo soluciona. Registra en 5 segundos. La IA escribe la evaluación.",
+    hero_cta_primary: "Empezar gratis", hero_cta_secondary: "Ver cómo funciona",
+    hero_proof1: "🎙️ Voz, fotos y texto", hero_proof2: "🤖 La IA escribe tu evaluación", hero_proof3: "📄 Gratis para individuos y managers",
+    card1_label: "Para ti", card1_title: "Nunca olvides un logro", card1_body: "Registra tus logros, feedback y objetivos en el momento. Cuando llegue la evaluación — o vayas por un aumento — tu expediente ya está listo.",
+    card2_label: "Para managers", card2_title: "Conoce a tu equipo siempre", card2_body: "Registra observaciones sobre tus colaboradores en segundos. Sin más estrés antes de las evaluaciones — el historial de cada miembro está ahí, listo para revisar.",
+    card3_label: "Para todos", card3_title: "La IA escribe la evaluación", card3_body: "Cuando llegue el momento, la IA convierte meses de registros en un informe de evaluación pulido en minutos. Exporta a PDF o Word y listo.",
+  },
+  de: {
+    nav_features: "Funktionen", nav_how: "So funktioniert's", nav_pricing: "Preise",
+    nav_signin: "Anmelden", nav_cta: "Kostenlos starten",
+    hero_badge: "Für Einzelpersonen & Manager — KI-gestützt",
+    hero_h1a: "Schluss mit dem Stress", hero_h1b: "vor Leistungsbeurteilungen.",
+    hero_sub: "Jeder fürchtet die Beurteilungssaison — Mitarbeiter, die sich nicht mehr erinnern, was sie getan haben, Manager, die die Leistungen ihres Teams vergessen haben. Perfember löst beides. In 5 Sekunden erfassen. KI schreibt die Beurteilung.",
+    hero_cta_primary: "Kostenlos starten", hero_cta_secondary: "Wie es funktioniert",
+    hero_proof1: "🎙️ Sprache, Fotos & Text", hero_proof2: "🤖 KI schreibt Ihre Beurteilung", hero_proof3: "📄 Kostenlos für Einzelpersonen & Manager",
+    card1_label: "Für Sie", card1_title: "Nie wieder einen Erfolg vergessen", card1_body: "Erfassen Sie Leistungen, Feedback und Ziele direkt im Moment. Wenn die Beurteilung kommt — oder Sie eine Gehaltserhöhung anstreben — ist Ihr Nachweis bereits vollständig.",
+    card2_label: "Für Manager", card2_title: "Ihr Team immer im Blick", card2_body: "Notieren Sie Beobachtungen zu Ihren Mitarbeitern in Sekunden. Kein Kopfzerbrechen mehr vor Beurteilungen — die Akte jedes Teammitglieds ist jederzeit abrufbar.",
+    card3_label: "Für alle", card3_title: "KI schreibt die Beurteilung", card3_body: "Wenn es soweit ist, verwandelt die KI monatelange Aufzeichnungen in Minuten in ein ausgefeiltes Beurteilungsdokument. Als PDF oder Word exportieren — fertig.",
+  },
+  zh: {
+    nav_features: "功能", nav_how: "使用方法", nav_pricing: "定价",
+    nav_signin: "登录", nav_cta: "免费开始",
+    hero_badge: "适合个人和管理者 — AI 驱动",
+    hero_h1a: "不再为绩效考核", hero_h1b: "手忙脚乱。",
+    hero_sub: "每到考核季，所有人都头疼 — 员工不记得自己做了什么，管理者不记得团队的成绩。Perfember 同时解决这两个问题。5秒记录，AI 自动生成考核报告。",
+    hero_cta_primary: "免费开始", hero_cta_secondary: "了解使用方法",
+    hero_proof1: "🎙️ 语音、照片和文字", hero_proof2: "🤖 AI 为您撰写考核报告", hero_proof3: "📄 个人和管理者均有免费版",
+    card1_label: "为您自己", card1_title: "永远不忘记每一份成就", card1_body: "随时记录成绩、反馈和目标。当考核来临 — 或者您想要加薪晋升时 — 您的材料早已准备就绪。",
+    card2_label: "为管理者", card2_title: "时刻掌握团队动态", card2_body: "几秒钟内记录对下属的观察。不再为考核前想破头 — 每位团队成员的记录随时可查。",
+    card3_label: "为所有人", card3_title: "AI 撰写考核报告", card3_body: "需要时，AI 在几分钟内将数月的记录整理成精美的自评或团队报告。导出为 PDF 或 Word，轻松完成。",
+  },
+  hi: {
+    nav_features: "सुविधाएं", nav_how: "कैसे काम करता है", nav_pricing: "मूल्य निर्धारण",
+    nav_signin: "साइन इन", nav_cta: "मुफ्त शुरू करें",
+    hero_badge: "व्यक्तियों और प्रबंधकों के लिए — AI द्वारा संचालित",
+    hero_h1a: "प्रदर्शन समीक्षाओं के लिए", hero_h1b: "भागदौड़ बंद करें।",
+    hero_sub: "हर कोई समीक्षा सीजन से डरता है — कर्मचारी जिन्हें याद नहीं कि उन्होंने क्या किया, प्रबंधक जिन्हें टीम के काम याद नहीं। Perfember दोनों को ठीक करता है। 5 सेकंड में लॉग करें। AI समीक्षा लिखता है।",
+    hero_cta_primary: "मुफ्त शुरू करें", hero_cta_secondary: "देखें यह कैसे काम करता है",
+    hero_proof1: "🎙️ आवाज़, फोटो और टेक्स्ट", hero_proof2: "🤖 AI आपकी समीक्षा लिखता है", hero_proof3: "📄 व्यक्तियों और प्रबंधकों के लिए मुफ्त",
+    card1_label: "आपके लिए", card1_title: "कोई भी जीत कभी न भूलें", card1_body: "अपनी उपलब्धियां, फीडबैक और लक्ष्य तुरंत दर्ज करें। जब समीक्षा का समय आए — या वेतन वृद्धि के लिए प्रयास करें — आपका केस पहले से तैयार है।",
+    card2_label: "प्रबंधकों के लिए", card2_title: "अपनी टीम को हमेशा जानें", card2_body: "अपने सीधे अधीनस्थों के बारे में सेकंडों में टिप्पणियां दर्ज करें। समीक्षाओं से पहले दिमाग खपाने की जरूरत नहीं — हर टीम सदस्य का रिकॉर्ड वहीं है।",
+    card3_label: "सभी के लिए", card3_title: "AI समीक्षा लिखता है", card3_body: "जब समय आए, AI महीनों के लॉग को मिनटों में एक परिष्कृत समीक्षा रिपोर्ट में बदल देता है। PDF या Word में निर्यात करें और काम पूरा।",
+  },
+  tl: {
+    nav_features: "Mga Tampok", nav_how: "Paano Gumagana", nav_pricing: "Presyo",
+    nav_signin: "Mag-sign in", nav_cta: "Magsimula nang libre",
+    hero_badge: "Para sa mga indibidwal at manager — pinapagana ng AI",
+    hero_h1a: "Itigil ang pag-aalala", hero_h1b: "bago ang performance review.",
+    hero_sub: "Natatakot ang lahat sa review season — mga empleyado na hindi maaalala ang kanilang ginawa, mga manager na nakalimutan ang nagawa ng kanilang team. Ayusin ng Perfember ang dalawa. I-log sa 5 segundo. Isusulat ng AI ang review.",
+    hero_cta_primary: "Magsimula nang libre", hero_cta_secondary: "Tingnan kung paano gumagana",
+    hero_proof1: "🎙️ Boses, larawan at teksto", hero_proof2: "🤖 Isinusulat ng AI ang iyong review", hero_proof3: "📄 Libre para sa mga indibidwal at manager",
+    card1_label: "Para sa iyo", card1_title: "Huwag kalimutang muli ang tagumpay", card1_body: "I-log ang iyong mga nagawa, feedback, at layunin habang nangyayari. Pagdating ng review — o kapag naghahanap ng dagdag na sahod — handa na ang iyong ebidensya.",
+    card2_label: "Para sa mga manager", card2_title: "Alamin ang iyong team, palagi", card2_body: "I-log ang mga obserbasyon tungkol sa iyong mga direktang ulat sa ilang segundo. Wala nang pagod-isipan bago ang appraisal — nandoon na ang rekord ng bawat miyembro.",
+    card3_label: "Para sa lahat", card3_title: "Isinusulat ng AI ang review", card3_body: "Sa tamang oras, ginagawa ng AI ang mga buwanang log sa isang maayos na ulat sa loob ng ilang minuto. I-export sa PDF o Word at tapos na.",
+  },
+};
+
+const langMeta = {
+  en: { flag: '🇬🇧', label: 'EN', dir: 'ltr' },
+  ar: { flag: '🇸🇦', label: 'AR', dir: 'rtl' },
+  ja: { flag: '🇯🇵', label: 'JA', dir: 'ltr' },
+  fr: { flag: '🇫🇷', label: 'FR', dir: 'ltr' },
+  es: { flag: '🇪🇸', label: 'ES', dir: 'ltr' },
+  de: { flag: '🇩🇪', label: 'DE', dir: 'ltr' },
+  zh: { flag: '🇨🇳', label: 'ZH', dir: 'ltr' },
+  hi: { flag: '🇮🇳', label: 'HI', dir: 'ltr' },
+  tl: { flag: '🇵🇭', label: 'TL', dir: 'ltr' },
+};
+
+function setLang(code) {
+  const t = translations[code] || translations.en;
+  const meta = langMeta[code] || langMeta.en;
+
+  // Apply translations
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  // RTL
+  document.documentElement.setAttribute('dir', meta.dir);
+  document.documentElement.setAttribute('lang', code);
+
+  // Update switcher display
+  document.getElementById('currentLangFlag').textContent = meta.flag;
+  document.getElementById('currentLangLabel').textContent = meta.label;
+
+  // Close menu
+  document.getElementById('langMenu').classList.remove('open');
+
+  // Remember choice
+  localStorage.setItem('perfember_lang', code);
+}
+
+function toggleLangMenu() {
+  document.getElementById('langMenu').classList.toggle('open');
+}
+
+// Close menu on outside click
+document.addEventListener('click', e => {
+  if (!document.getElementById('langSwitcher').contains(e.target)) {
+    document.getElementById('langMenu').classList.remove('open');
+  }
+});
+
+// Auto-detect language on load
+(function() {
+  const saved = localStorage.getItem('perfember_lang');
+  const browser = (navigator.language || 'en').split('-')[0].toLowerCase();
+  const supported = Object.keys(translations);
+  const detected = saved || (supported.includes(browser) ? browser : 'en');
+  if (detected !== 'en') setLang(detected);
+  else {
+    const meta = langMeta.en;
+    document.getElementById('currentLangFlag').textContent = meta.flag;
+    document.getElementById('currentLangLabel').textContent = meta.label;
+  }
+})();
+</script>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Nav scroll effect
