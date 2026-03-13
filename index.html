@@ -1927,3 +1927,40 @@ const style = document.createElement('style');
 style.textContent = `
   @media (max-width: 700px) {
     .na
+// end of scripts
+</script>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:white;border-top:1.5px solid rgba(10,122,90,0.15);padding:16px 28px;z-index:9999;box-shadow:0 -4px 24px rgba(0,0,0,0.08);transition:transform 0.4s ease,opacity 0.4s ease;transform:translateY(100%);opacity:0;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <p style="font-size:13px;color:#475569;margin:0;max-width:700px;">We use cookies to improve your experience and analyse site traffic. By continuing to use Perfember, you agree to our use of cookies. <a href="#privacy" style="color:#0A7A5A;font-weight:600;text-decoration:underline;">Privacy Policy</a></p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button onclick="acceptCookies()" style="background:linear-gradient(135deg,#0A7A5A,#065f46);color:white;border:none;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(10,122,90,0.3);">Accept</button>
+      <button onclick="acceptCookies()" style="background:white;color:#0A7A5A;border:1.5px solid rgba(10,122,90,0.3);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Manage Preferences</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function acceptCookies() {
+  localStorage.setItem('perfember_cookie_consent', 'accepted');
+  const banner = document.getElementById('cookie-banner');
+  banner.style.transform = 'translateY(100%)';
+  banner.style.opacity = '0';
+  setTimeout(() => banner.style.display = 'none', 400);
+}
+
+window.addEventListener('load', function() {
+  if (!localStorage.getItem('perfember_cookie_consent')) {
+    const banner = document.getElementById('cookie-banner');
+    banner.style.display = 'block';
+    setTimeout(() => {
+      banner.style.transform = 'translateY(0)';
+      banner.style.opacity = '1';
+    }, 1000);
+  }
+});
+</script>
+
+</body>
+</html>
