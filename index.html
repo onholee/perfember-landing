@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F172A'/%3E%3Crect x='5' y='5' width='22' height='6' rx='2' fill='%2334D399'/%3E%3Crect x='5' y='13' width='22' height='6' rx='2' fill='%23FBBF24'/%3E%3Crect x='5' y='21' width='22' height='6' rx='2' fill='%23F87171'/%3E%3C/svg%3E">
 <title>Perfember — Remember everything you achieved. Never scramble for a review again.</title>
 <meta name="description" content="Log a win in 5 seconds. AI writes your performance review. Your personal career journal that makes HR effortless — for you or your whole team.">
 <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your real Measurement ID -->
@@ -19,7 +20,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -50,6 +51,22 @@
   --radius: 12px;
   --radius-lg: 20px;
   --radius-xl: 28px;
+
+  /* RAG Brand Colours */
+  --green:        #10B981;
+  --green-light:  #34D399;
+  --green-dark:   #0A7A5A;
+  --green-bg:     #ecfdf5;
+  --green-border: #a7f3d0;
+  --brand-black:  #0f172a;
+  --amber:        #F59E0B;
+  --amber-light:  #FBBF24;
+  --amber-bg:     #fffbeb;
+  --amber-border: #fde68a;
+  --red:          #EF4444;
+  --red-light:    #F87171;
+  --red-bg:       #fef2f2;
+  --red-border:   #fecaca;
 }
 
 html { scroll-behavior: smooth; }
@@ -57,7 +74,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
   color: var(--slate-800);
-  background: var(--slate-50);
+  background: #f0faf5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -67,56 +84,45 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(248, 250, 252, 0.82);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  background: rgba(240, 250, 245, 0.92);
+  border-bottom: 1px solid rgba(10, 122, 90, 0.15);
   transition: box-shadow 0.3s;
 }
-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.06); }
+nav.scrolled { box-shadow: 0 4px 30px rgba(10,122,90,0.1); }
 .nav-inner {
-  max-width: 1200px; margin: 0 auto;
+  max-width: 100%; margin: 0;
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 28px;
 }
 .nav-logo {
   display: flex; align-items: center; gap: 10px;
-  text-decoration: none; color: var(--slate-900);
+  text-decoration: none; color: #0f172a;
 }
-.nav-logo-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 800; font-size: 18px;
-  font-family: var(--font-display);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
-}
-.nav-logo-text {
-  font-family: var(--font-display); font-weight: 700; font-size: 22px;
-  letter-spacing: -0.5px;
-}
+/* nav logo uses inline Nunito wordmark — no icon needed */
 .nav-links { display: flex; align-items: center; gap: 8px; }
 .nav-links a {
-  text-decoration: none; color: var(--slate-600);
+  text-decoration: none; color: #0A7A5A;
   font-size: 14px; font-weight: 500; padding: 8px 14px;
   border-radius: 8px; transition: all 0.2s;
 }
-.nav-links a:hover { color: var(--slate-900); background: var(--slate-100); }
+.nav-links a:hover { color: #065f46; background: rgba(10,122,90,0.08); }
 .nav-cta {
-  background: var(--slate-900) !important; color: white !important;
+  background: #0A7A5A !important; color: white !important;
   font-weight: 600 !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(10,122,90,0.3);
   transition: transform 0.2s, box-shadow 0.2s !important;
 }
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(10,122,90,0.35) !important; }
 .nav-signin {
-  background: transparent !important; color: var(--slate-900) !important;
-  font-weight: 600 !important; border: 1.5px solid var(--slate-900) !important;
+  background: transparent !important; color: #0A7A5A !important;
+  font-weight: 600 !important; border: 1.5px solid #0A7A5A !important;
   transition: all 0.2s !important;
 }
-.nav-signin:hover { background: var(--slate-900) !important; color: white !important; }
+.nav-signin:hover { background: #0A7A5A !important; color: white !important; }
 
 .mobile-menu-btn {
   display: none; background: none; border: none; cursor: pointer;
-  padding: 8px; color: var(--slate-700);
+  padding: 8px; color: #0f172a;
 }
 .mobile-menu-btn svg { width: 24px; height: 24px; }
 
@@ -124,17 +130,17 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.06); }
 .lang-switcher { position: relative; }
 .lang-btn {
   display: flex; align-items: center; gap: 5px;
-  background: none; border: 1.5px solid var(--slate-200);
+  background: none; border: 1.5px solid rgba(10,122,90,0.2);
   border-radius: 8px; padding: 6px 10px; cursor: pointer;
   font-family: var(--font-body); font-size: 13px; font-weight: 600;
-  color: var(--slate-600); transition: all 0.2s;
+  color: #0A7A5A; transition: all 0.2s;
 }
-.lang-btn:hover { border-color: var(--emerald-400); color: var(--emerald-700); }
+.lang-btn:hover { border-color: #0A7A5A; color: #065f46; }
 .lang-menu {
   display: none; position: absolute; top: calc(100% + 8px); right: 0;
-  background: white; border: 1px solid var(--slate-200);
+  background: white; border: 1px solid rgba(10,122,90,0.15);
   border-radius: 12px; padding: 6px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   z-index: 200; min-width: 160px;
 }
 .lang-menu.open { display: block; }
@@ -142,10 +148,10 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.06); }
   display: block; width: 100%; text-align: left;
   background: none; border: none; padding: 8px 12px;
   border-radius: 8px; font-family: var(--font-body);
-  font-size: 13px; font-weight: 500; color: var(--slate-700);
+  font-size: 13px; font-weight: 500; color: #1a2e25;
   cursor: pointer; transition: background 0.15s;
 }
-.lang-menu button:hover { background: var(--slate-50); }
+.lang-menu button:hover { background: #f0faf5; }
 
 /* RTL support for Arabic */
 html[dir="rtl"] { direction: rtl; }
@@ -163,50 +169,54 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
   content: '';
   position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
   width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 30% 50%, rgba(16,185,129,0.18) 0%, transparent 55%), radial-gradient(circle at 70% 50%, rgba(239,68,68,0.12) 0%, transparent 55%);
   pointer-events: none;
 }
 .hero::after {
   content: '';
   position: absolute; top: 80px; right: -100px;
   width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--emerald-50);
-  border: 1px solid var(--emerald-200);
+  background: white;
+  border: 1px solid rgba(10,122,90,0.2);
   padding: 8px 18px; border-radius: 100px;
-  font-size: 13px; font-weight: 600; color: var(--emerald-700);
+  font-size: 13px; font-weight: 600; color: #0A7A5A;
   margin-bottom: 28px;
   animation: fadeUp 0.7s ease both;
 }
+.hero-badge-dots {
+  display: flex; gap: 4px; align-items: center;
+}
 .hero-badge-dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--emerald-500);
   animation: pulse-dot 2s ease infinite;
 }
+.hero-badge-dot.g { background: var(--green); }
+.hero-badge-dot.a { background: var(--amber); animation-delay: 0.3s; }
+.hero-badge-dot.r { background: var(--red); animation-delay: 0.6s; }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(42px, 6vw, 74px);
-  font-weight: 800; line-height: 1.05;
-  letter-spacing: -2px;
-  color: var(--slate-950);
-  max-width: 800px; margin: 0 auto 24px;
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: #0f172a;
+  max-width: 900px; margin: 0 auto 24px;
+  text-align: center;
   animation: fadeUp 0.7s ease 0.1s both;
 }
 .hero h1 .accent {
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--slate-950);
 }
 
 .hero-sub {
   font-size: clamp(17px, 2vw, 20px);
-  color: var(--slate-500); line-height: 1.6;
+  color: #3d6b56; line-height: 1.6;
   max-width: 560px; margin: 0 auto 40px;
   animation: fadeUp 0.7s ease 0.2s both;
 }
@@ -225,31 +235,31 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
   transition: all 0.25s ease;
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+  background: linear-gradient(135deg, #0A7A5A, #065f46);
   color: white;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35), 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(10,122,90,0.35), 0 1px 3px rgba(0,0,0,0.08);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(16, 185, 129, 0.4), 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 28px rgba(10,122,90,0.4), 0 2px 6px rgba(0,0,0,0.1);
 }
 .btn-secondary {
-  background: white; color: var(--slate-700);
-  border: 1.5px solid var(--slate-200);
+  background: white; color: #EF4444;
+  border: 1.5px solid #fecaca;
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .btn-secondary:hover {
-  border-color: var(--slate-300); background: var(--slate-50);
+  border-color: #EF4444; background: #fef2f2;
   transform: translateY(-1px);
 }
 
 .hero-proof {
   margin-top: 48px;
   display: flex; align-items: center; justify-content: center; gap: 24px;
-  font-size: 13px; color: var(--slate-400);
+  font-size: 13px;
   animation: fadeUp 0.7s ease 0.45s both;
 }
-.hero-proof-divider { width: 1px; height: 20px; background: var(--slate-200); }
+.hero-proof-divider { width: 1px; height: 20px; background: rgba(10,122,90,0.2); }
 
 /* ─── PHONE MOCKUP ─── */
 .hero-visual {
@@ -289,7 +299,7 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
 .phone-status-bar {
   display: flex; justify-content: space-between; align-items: center;
   padding: 14px 20px 8px; font-size: 12px; font-weight: 600;
-  color: var(--slate-700);
+  color: #0f172a;
 }
 .phone-app-header {
   padding: 12px 20px;
@@ -297,11 +307,11 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
 }
 .phone-app-title {
   font-family: var(--font-display);
-  font-weight: 700; font-size: 20px; color: var(--slate-900);
+  font-weight: 700; font-size: 20px; color: #0f172a;
 }
 .phone-greeting {
   padding: 4px 20px 16px;
-  font-size: 14px; color: var(--slate-500);
+  font-size: 14px; color: #3d6b56;
 }
 .phone-greeting strong { color: var(--slate-800); }
 .phone-stats {
@@ -309,19 +319,18 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
   padding: 0 16px 12px;
 }
 .phone-stat {
-  background: var(--emerald-50);
   border-radius: 12px; padding: 12px;
   text-align: center;
 }
 .phone-stat-num {
   font-family: var(--font-display);
-  font-weight: 800; font-size: 22px; color: var(--emerald-600);
+  font-weight: 800; font-size: 22px;
 }
-.phone-stat-label { font-size: 10px; color: var(--slate-500); margin-top: 2px; }
+.phone-stat-label { font-size: 10px; color: #3d6b56; margin-top: 2px; }
 .phone-quick-actions {
   padding: 8px 16px;
 }
-.phone-qa-title { font-size: 11px; font-weight: 600; color: var(--slate-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.phone-qa-title { font-size: 11px; font-weight: 600; color: #5a8a6e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
 .phone-qa-btn {
   display: flex; align-items: center; gap: 10px;
   background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
@@ -336,7 +345,7 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
   font-size: 14px;
 }
 .phone-recent { padding: 14px 16px; flex: 1; }
-.phone-recent-title { font-size: 11px; font-weight: 600; color: var(--slate-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.phone-recent-title { font-size: 11px; font-weight: 600; color: #5a8a6e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
 .phone-log-item {
   display: flex; align-items: center; gap: 10px;
   padding: 10px 0;
@@ -350,15 +359,15 @@ html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
 .phone-log-emoji.win { background: #fef3c7; }
 .phone-log-emoji.feedback { background: #dbeafe; }
 .phone-log-emoji.goal { background: #ede9fe; }
-.phone-log-text { font-size: 12px; color: var(--slate-700); flex: 1; }
-.phone-log-time { font-size: 10px; color: var(--slate-400); }
+.phone-log-text { font-size: 12px; color: #3d6b56; flex: 1; }
+.phone-log-time { font-size: 10px; color: #5a8a6e; }
 
 /* ─── SECTION COMMON ─── */
 section { padding: 100px 28px; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .section-label {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; font-weight: 600; color: var(--emerald-600);
+  font-size: 13px; font-weight: 600; color: #0A7A5A;
   text-transform: uppercase; letter-spacing: 1px;
   margin-bottom: 16px;
 }
@@ -366,11 +375,11 @@ section { padding: 100px 28px; }
   font-family: var(--font-display);
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 800; letter-spacing: -1.5px;
-  color: var(--slate-900); line-height: 1.15;
+  color: #0f172a; line-height: 1.15;
   margin-bottom: 16px;
 }
 .section-desc {
-  font-size: 17px; color: var(--slate-500); line-height: 1.65;
+  font-size: 17px; color: #3d6b56; line-height: 1.65;
   max-width: 600px;
 }
 
@@ -383,29 +392,27 @@ section { padding: 100px 28px; }
 .hiw-card {
   position: relative; padding: 36px 28px;
   border-radius: var(--radius-lg);
-  background: var(--slate-50);
-  border: 1px solid var(--slate-100);
+  background: white;
+  border: 1px solid rgba(10,122,90,0.12);
   transition: all 0.3s ease;
 }
 .hiw-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0,0,0,0.06);
-  border-color: var(--emerald-200);
+  border-color: var(--slate-300);
 }
 .hiw-step {
   width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
   color: white; display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-weight: 800; font-size: 18px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
-.hiw-card h3 {
+.hiw-card h3 { color: #0f172a;
   font-family: var(--font-display);
-  font-size: 20px; font-weight: 700; color: var(--slate-900);
+  font-size: 20px; font-weight: 700; color: #0f172a;
   margin-bottom: 10px;
 }
-.hiw-card p { font-size: 15px; color: var(--slate-500); line-height: 1.6; }
+.hiw-card p { color: #3d6b56; font-size: 15px; color: #3d6b56; line-height: 1.6; }
 .hiw-time {
   display: inline-flex; align-items: center; gap: 4px;
   margin-top: 16px; padding: 6px 12px;
@@ -418,7 +425,7 @@ section { padding: 100px 28px; }
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
   margin-top: 56px;
 }
-.feature-card {
+.feature-card { background: white; border-color: rgba(10,122,90,0.12);
   padding: 36px;
   background: white;
   border: 1px solid var(--slate-150, var(--slate-100));
@@ -442,10 +449,10 @@ section { padding: 100px 28px; }
 .feature-icon.manager { background: linear-gradient(135deg, #ffedd5, #fed7aa); }
 .feature-card h3 {
   font-family: var(--font-display);
-  font-size: 19px; font-weight: 700; color: var(--slate-900);
+  font-size: 19px; font-weight: 700; color: #0f172a;
   margin-bottom: 10px;
 }
-.feature-card p { font-size: 14.5px; color: var(--slate-500); line-height: 1.6; }
+.feature-card p { font-size: 14.5px; color: #3d6b56; line-height: 1.6; }
 .feature-tag {
   display: inline-flex; margin-top: 14px; padding: 4px 10px;
   background: var(--emerald-50); border-radius: 6px;
@@ -459,8 +466,8 @@ section { padding: 100px 28px; }
   display: flex; align-items: center; justify-content: center; gap: 16px;
   margin-top: 32px; margin-bottom: 48px;
 }
-.pricing-toggle span { font-size: 14px; font-weight: 500; color: var(--slate-500); }
-.pricing-toggle span.active { color: var(--slate-900); font-weight: 600; }
+.pricing-toggle span { font-size: 14px; font-weight: 500; color: #3d6b56; }
+.pricing-toggle span.active { color: #0A7A5A; font-weight: 600; }
 .toggle-switch {
   width: 48px; height: 26px;
   background: var(--slate-200); border-radius: 100px;
@@ -498,38 +505,38 @@ section { padding: 100px 28px; }
 }
 .price-card.featured .price-card-name { color: white; }
 .price-card.featured .price-card-price { color: white; }
-.price-card.featured .price-card-desc { color: var(--slate-400); }
+.price-card.featured .price-card-desc { color: #5a8a6e; }
 .price-card.featured .price-card-feature { color: var(--slate-300); }
 .price-card.featured .price-card-check { color: var(--emerald-400); }
 
 .price-badge {
   position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
   padding: 5px 14px; border-radius: 100px;
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+  background: linear-gradient(135deg,#F59E0B,#D97706);
   color: white; font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(16,185,129,0.35);
+  box-shadow: 0 4px 12px rgba(245,158,11,0.35);
 }
 .price-card-name {
   font-family: var(--font-display);
-  font-size: 20px; font-weight: 700; color: var(--slate-900);
+  font-size: 20px; font-weight: 700; color: #0f172a;
   margin-bottom: 6px;
 }
-.price-card-desc { font-size: 13.5px; color: var(--slate-500); margin-bottom: 24px; }
+.price-card-desc { font-size: 13.5px; color: #3d6b56; margin-bottom: 24px; }
 .price-card-price {
   font-family: var(--font-display);
-  font-size: 48px; font-weight: 800; color: var(--slate-900);
+  font-size: 48px; font-weight: 800; color: #0f172a;
   letter-spacing: -2px;
 }
-.price-card-price span { font-size: 16px; font-weight: 500; color: var(--slate-400); letter-spacing: 0; }
-.price-card-divider { height: 1px; background: var(--slate-200); margin: 24px 0; }
+.price-card-price span { font-size: 16px; font-weight: 500; color: #5a8a6e; letter-spacing: 0; }
+.price-card-divider { height: 1px; background: rgba(10,122,90,0.1); margin: 24px 0; }
 .price-card.featured .price-card-divider { background: var(--slate-700); }
 .price-card-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
 .price-card-feature {
   display: flex; align-items: flex-start; gap: 10px;
-  font-size: 14px; color: var(--slate-600); line-height: 1.4;
+  font-size: 14px; color: #3d6b56; line-height: 1.4;
 }
-.price-card-check { color: var(--emerald-500); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.price-card-check { color: #0A7A5A; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 .price-btn {
   display: block; width: 100%; text-align: center;
   padding: 14px; border-radius: var(--radius);
@@ -538,18 +545,18 @@ section { padding: 100px 28px; }
   transition: all 0.25s;
 }
 .price-btn-outline {
-  background: white; color: var(--slate-700);
-  border: 1.5px solid var(--slate-200);
+  background: white; color: #0A7A5A;
+  border: 1.5px solid rgba(10,122,90,0.2);
 }
 .price-btn-outline:hover { border-color: var(--slate-300); background: var(--slate-50); }
 .price-btn-primary {
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+  background: linear-gradient(135deg, #0A7A5A, #065f46);
   color: white; border: none;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 16px rgba(10,122,90,0.35);
 }
 .price-btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 6px 24px rgba(10,122,90,0.4);
 }
 
 /* ─── TESTIMONIALS (placeholder) ─── */
@@ -561,7 +568,7 @@ section { padding: 100px 28px; }
 }
 .sp-logo {
   font-family: var(--font-display);
-  font-size: 22px; font-weight: 700; color: var(--slate-400);
+  font-size: 22px; font-weight: 700; color: #5a8a6e;
   letter-spacing: -0.5px;
 }
 
@@ -580,8 +587,9 @@ section { padding: 100px 28px; }
 .cta-section::after {
   content: '';
   position: absolute; top: -50%; left: -20%; width: 140%; height: 140%;
-  background: radial-gradient(ellipse at 30% 50%, rgba(16,185,129,0.12) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 50%, rgba(16,185,129,0.08) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 20% 50%, rgba(16,185,129,0.14) 0%, transparent 45%),
+              radial-gradient(ellipse at 50% 30%, rgba(245,158,11,0.08) 0%, transparent 45%),
+              radial-gradient(ellipse at 80% 50%, rgba(239,68,68,0.10) 0%, transparent 45%);
   pointer-events: none;
 }
 .cta-inner {
@@ -596,7 +604,7 @@ section { padding: 100px 28px; }
   margin-bottom: 18px;
 }
 .cta-section p {
-  font-size: 18px; color: var(--slate-400); line-height: 1.6;
+  font-size: 18px; color: #5a8a6e; line-height: 1.6;
   margin-bottom: 36px;
 }
 
@@ -612,27 +620,27 @@ section { padding: 100px 28px; }
   font-family: var(--font-body);
   outline: none; transition: border-color 0.2s;
 }
-.email-input::placeholder { color: var(--slate-500); }
-.email-input:focus { border-color: var(--emerald-500); }
+.email-input::placeholder { color: #3d6b56; }
+.email-input:focus { border-color: var(--green); }
 .email-submit {
   padding: 14px 24px; border: none; border-radius: var(--radius);
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
+  background: linear-gradient(135deg, #0A7A5A, #065f46);
   color: white; font-size: 15px; font-weight: 600;
   font-family: var(--font-body); cursor: pointer;
   transition: all 0.25s;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 16px rgba(10,122,90,0.3);
 }
 .email-submit:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 6px 24px rgba(10,122,90,0.4);
 }
 
 /* ─── FOOTER ─── */
 footer {
-  background: var(--slate-950);
+  background: #0a1a14;
   padding: 48px 28px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(52,211,153,0.2);
 }
 .footer-inner {
   max-width: 1100px; margin: 0 auto;
@@ -642,11 +650,7 @@ footer {
 .footer-brand {
   display: flex; align-items: center; gap: 10px;
 }
-.footer-logo-icon {
-  width: 28px; height: 28px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600));
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 800; font-size: 14px;
+.footer-logo-icon-unused {
   font-family: var(--font-display);
 }
 .footer-logo-text {
@@ -655,12 +659,12 @@ footer {
 }
 .footer-links { display: flex; gap: 24px; }
 .footer-links a {
-  text-decoration: none; font-size: 13px; color: var(--slate-500);
+  text-decoration: none; font-size: 13px; color: #3d6b56;
   transition: color 0.2s;
 }
 .footer-links a:hover { color: var(--slate-300); }
-.footer-copy { font-size: 13px; color: var(--slate-600); }
-.footer-copy a { color: var(--slate-500); text-decoration: none; }
+.footer-copy { font-size: 13px; color: #3d6b56; }
+.footer-copy a { color: #3d6b56; text-decoration: none; }
 .footer-copy a:hover { color: var(--emerald-400); }
 
 /* ─── ANIMATIONS ─── */
@@ -709,6 +713,35 @@ footer {
   div[style*="grid-template-columns: repeat(3, 1fr)"] { grid-template-columns: 1fr !important; }
   div[style*="grid-template-columns: repeat(4, 1fr)"] { grid-template-columns: 1fr 1fr !important; }
 }
+
+  /* Industry pack pills */
+  .pack-pill {
+    display: inline-flex; align-items: center;
+    padding: 7px 16px; border-radius: 100px;
+    font-size: 13px; font-weight: 600;
+    white-space: nowrap; flex-shrink: 0;
+    border: 1.5px solid;
+  }
+  .pack-green { background: #f0faf5; border-color: #a7f3d0; color: #065f46; }
+  .pack-amber { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+  .pack-red   { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+  .pack-fun   { background: #f5f3ff; border-color: #ddd6fe; color: #5b21b6; }
+  .pack-new   {
+    background: linear-gradient(135deg, #0A7A5A, #065f46);
+    border-color: transparent; color: white;
+    box-shadow: 0 2px 12px rgba(10,122,90,0.3);
+  }
+
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-reverse {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
 </style>
 </head>
 <body>
@@ -716,9 +749,15 @@ footer {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">P</div>
-      <div class="nav-logo-text">Perfember</div>
+    <a href="#" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+      <!-- Icon: three bars on green rounded square -->
+      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(145deg,#12C58A,#0A7A5A);box-shadow:0 2px 8px rgba(16,185,129,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0;">
+        <div style="width:26px;height:6px;border-radius:3px;background:#34D399;"></div>
+        <div style="width:26px;height:6px;border-radius:3px;background:#FBBF24;"></div>
+        <div style="width:26px;height:6px;border-radius:3px;background:#F87171;"></div>
+      </div>
+      <!-- Wordmark -->
+      <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:#0f172a;letter-spacing:-0.5px;">Perfember</span>
     </a>
     <div class="nav-links">
       <a href="#features" data-i18n="nav_features">Features</a>
@@ -757,11 +796,20 @@ footer {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">
-    <span class="hero-badge-dot"></span>
+    <span class="hero-badge-dots"><span class="hero-badge-dot g"></span><span class="hero-badge-dot a"></span><span class="hero-badge-dot r"></span></span>
     <span data-i18n="hero_badge">For individuals &amp; managers — powered by AI</span>
   </div>
-  <h1><span data-i18n="hero_h1a">Stop scrambling</span><br><span class="accent" data-i18n="hero_h1b">for performance reviews.</span></h1>
-  <p class="hero-sub" data-i18n="hero_sub">Everyone dreads review season — employees who can't remember what they did, managers who can't remember what their team did. Perfember fixes both. Log anything in 5 seconds. AI writes the review.</p>
+  <h1>
+  <div style="display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:nowrap;white-space:nowrap;margin-bottom:8px;">
+    <span style="width:62px;height:62px;border-radius:14px;background:linear-gradient(145deg,#12C58A,#0A7A5A);box-shadow:0 4px 16px rgba(16,185,129,0.35);display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex-shrink:0;">
+      <span style="width:36px;height:6px;border-radius:3px;background:#34D399;display:block;"></span>
+      <span style="width:36px;height:6px;border-radius:3px;background:#FBBF24;display:block;"></span>
+      <span style="width:36px;height:6px;border-radius:3px;background:#F87171;display:block;"></span>
+    </span><span style="color:#0f172a;font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(36px,5.5vw,72px);">Perfember</span><span style="color:#0A7A5A;font-weight:900;font-size:clamp(36px,5.5vw,72px);"> — Performance Remembered.</span>
+  </div>
+  <div style="color:#0f172a;font-size:clamp(28px,4vw,54px);font-weight:800;text-align:center;">Log it in seconds. Own it. Use it.</div>
+</h1>
+  <p class="hero-sub">Capture what matters in seconds, tailored to your industry and role. AI turns it into reviews, feedback and reports — whenever you need them.</p>
   <div class="hero-cta-row">
     <a href="https://app.perfember.com/register" class="btn btn-primary">
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -770,32 +818,235 @@ footer {
     <a href="#how" class="btn btn-secondary" data-i18n="hero_cta_secondary">See How It Works</a>
   </div>
   <div class="hero-proof">
-    <span data-i18n="hero_proof1">🎙️ Voice, photos & text</span>
+    <span data-i18n="hero_proof1" style="color:var(--green);font-weight:600;">🎙️ Voice, photos & text</span>
     <span class="hero-proof-divider"></span>
-    <span data-i18n="hero_proof2">🤖 AI writes your review for you</span>
+    <span data-i18n="hero_proof2" style="color:var(--amber);font-weight:600;">🤖 AI writes your review for you</span>
     <span class="hero-proof-divider"></span>
-    <span data-i18n="hero_proof3">📄 Free for individuals &amp; managers</span>
+    <span data-i18n="hero_proof3" style="color:var(--red);font-weight:600;">📄 Free for individuals &amp; managers</span>
   </div>
 
   <!-- Value prop cards -->
   <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 900px; margin: 56px auto 0; text-align: left;">
-    <div style="background: white; border: 1px solid var(--emerald-200); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(16,185,129,0.07);">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--emerald-600); margin-bottom: 12px;" data-i18n="card1_label">For you</div>
+    <div style="background: #f0faf5; border: 1.5px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 28px; box-shadow: 0 2px 20px rgba(0,0,0,0.3);">
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); margin-bottom: 12px;" data-i18n="card1_label">For you</div>
       <div style="font-size: 28px; margin-bottom: 12px;">🏆</div>
-      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;" data-i18n="card1_title">Never forget a win again</div>
-      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;" data-i18n="card1_body">Log your achievements, feedback, and goals as they happen. When review time comes — or you're gunning for a pay rise — your case is already built.</div>
+      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px;" data-i18n="card1_title">Never forget a win again</div>
+      <div style="font-size: 14px; color: #3d6b56; line-height: 1.6;" data-i18n="card1_body">Log your achievements, feedback, and goals as they happen. When review time comes — or you're gunning for a pay rise — your case is already built.</div>
     </div>
-    <div style="background: white; border: 1px solid var(--emerald-200); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(16,185,129,0.07);">
+    <div style="background: #f0faf5; border: 1.5px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 28px; box-shadow: 0 2px 20px rgba(0,0,0,0.3);">
       <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--emerald-600); margin-bottom: 12px;" data-i18n="card2_label">For managers</div>
       <div style="font-size: 28px; margin-bottom: 12px;">👥</div>
-      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;" data-i18n="card2_title">Know your team, always</div>
-      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;" data-i18n="card2_body">Log observations about your direct reports in seconds. No more wracking your brain before appraisals — every team member's record is right there, ready to review.</div>
+      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px;" data-i18n="card2_title">Know your team, always</div>
+      <div style="font-size: 14px; color: #3d6b56; line-height: 1.6;" data-i18n="card2_body">Log observations about your direct reports in seconds. No more wracking your brain before appraisals — every team member's record is right there, ready to review.</div>
     </div>
-    <div style="background: white; border: 1px solid var(--slate-200); border-radius: 16px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--slate-400); margin-bottom: 12px;" data-i18n="card3_label">For everyone</div>
+    <div style="background: #fef2f2; border: 1.5px solid rgba(239,68,68,0.3); border-radius: 16px; padding: 28px; box-shadow: 0 2px 20px rgba(0,0,0,0.3);">
+      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--red); margin-bottom: 12px;" data-i18n="card3_label">For everyone</div>
       <div style="font-size: 28px; margin-bottom: 12px;">📝</div>
-      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;" data-i18n="card3_title">AI writes the review</div>
-      <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6;" data-i18n="card3_body">When it's time, AI turns months of logs into a polished self-review or team report in minutes. Export to PDF or Word and you're done.</div>
+      <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px;" data-i18n="card3_title">AI writes the review</div>
+      <div style="font-size: 14px; color: #3d6b56; line-height: 1.6;" data-i18n="card3_body">When it's time, AI turns months of logs into a polished self-review or team report in minutes. Export to PDF or Word and you're done.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INDUSTRY PACKS IN ACTION -->
+<section style="background: #f0faf5; padding: 80px 28px;">
+  <div class="section-inner">
+    <div class="section-label reveal" style="color:#0A7A5A;">📦 Industry Packs</div>
+    <h2 class="section-title reveal">See exactly what you'd get.</h2>
+    <p class="section-desc reveal">Every industry pack comes with pre-built categories tailored to your role. Here's a taste of four popular packs — with a real downloadable sample report for each.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;">
+      
+      <div class="reveal" style="background:white;border:1.5px solid rgba(10,122,90,0.15);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.05);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+          <div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;font-family:'Nunito',sans-serif;letter-spacing:-0.3px;">🍔 Burger Joint Pack</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:#0f172a;">Bobby Maynard · Shift Supervisor</div>
+          </div>
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoYW5vbnltb3VzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKHVuc3BlY2lmaWVkKSAvVGl0bGUgKHVudGl0bGVkKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0NvdW50IDEgL0tpZHMgWyA0IDAgUiBdIC9UeXBlIC9QYWdlcwo+PgplbmRvYmoKOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MTk2Cj4+CnN0cmVhbQpHYXUwRmdOTUFcJ24rXDhpJEgoNCN0Zl5KMDZzbENrTC5AZkBdT3FAbDNrUylBbHMsLyc5WmtHSik6XEgzJm1bcSwndG9wPzdUJ2JhRSVJV2BXOD1OMUFrL09eWzU/YGtMXF5zaF5QOCtcQHJeIzgwYjllJmhnRGtBPHRoTidnZUBwMTpcI1FcJTRJaTlcWlRNPzdmdEJNbkgtRVhmXipML1ZMLV9lNWhMLCc9Vj1UOGFZQmQ2PDpaUyg5XFBSYnBzLzRtXSFNPWRdMGttcV5bcExSNEZjIiFEanE+RCwlbEg8bSI7VG1POUE6UExVWVgmdSJIXl1qYihxWC9gPjhYYmA2N1E9WnBeWjxsWmtmNkVLR0xkN0YyTlIyV1UmVzhCLzhzaVU2ZHM3WE5tPWBDYD9uLFMuZFhibU9UNEMrSUhyNnM8QzNTY1M+OEouXSJaOTxUVz1qRz89Kl0oaF5vITNJWiJGNiMmMi8iQDtPTDMpPERpNWVnQyxdLEk5J2JOYV0sSzVSJENaVy1yc2EiJnUvJyJpIT9PZzd1LnNAQF08JksyRkJlNl1ZSDciP0pxMkhaNiIpJFciZyUsMD1BMlNsMmxILXFZLlk8SCVtSkRCKkY7LDA2ImotUjwiOz9VRlY/QU0vOktHUzBNakZjM25ITVQlOlFpN05uYiQnZlo4cl5fLFEwTllqOUZZYXBqbSFBQUROUFNaPUFQSDtmcDA1OzQvTiF0QisnIUZLLEFEdSg6UTkoclRFIyIkdSFSQGNoUEc0QDNBXT09S3I5PEJeXSddMk1oPVA/InJCRzwjQVUpNkU9bGk/OWFmJl4nMilVMT1sVyhdMVYvMCFEXz4wb0BVTGQ7MyMiOjMqWnU2RmstWE0iRG4kKFAjUVpyJkpSPCxPVUFKVjdLV2wwInRjczhcV2Y2P10mSiRnb0pvQzp1Kks2WidzMyZLK0gxLkM8XC4vY15kOz9URko7NXBRUWBBYkYuRnFKWGZhKTY0VGNmNTAuUi08LzY6LTphOGdNUllNUyo7JXIxZFpbNnFualYsRFZEU19UZ19ic2sjLGM3O0xSNDwpU0ghLUdkLmssMlUtXSJpKj9WZmFeKCIpYlZeX0ktclc/Sl4oSisuPCowcUldVnVYISZUPHVeTltpNk5TKThGRkRKR0lJMD5EPiNHKSlmP0ZrNmdDKT4tQWkrTy84YFczLlooK1VnNig/PEFUKFtCWCxPIllWRW1bPWopPmkiSU5dMEpMPHJMVU1ePk5ISD9FWzRJNmswKzdrMjIhQGYlYFonZTNtWm4yKWFFIXNeQnJsQGZyPWRWVjMhazU6Plp0QF4zST9zZSEqTilnI19BLC8rcnJXWWR0dVhTYFlaJT9FcidgKiZVOEFQWllXVUdvWUUtPV9kKChOP0tdM2pzOENzTVpfKVtaWUZmLCNxIS5gNDUwRFRpXnRSdVYnO0ZxYyZeKWUtOGs9YD5bNTtkK0trQEBvJCVQQnI2ImxPTDhsWjl1LltQRWw/KDcmJDEnPUttJmZNakpHL1Q5XkhXazd1PGlmOkhsV0NKaiZyOEVhNVkuQVItI0MoQEVhU0ReQDhyUCs0OTZULD06LFRDM1xWc202XkIxXWI/QCdjRmJFVUNoJ2M9cCpxXyVjSGVQa3RGV2tQLTRGUy0+XW1UaD0yKCwsWW8+Q1VFSHIxNSYnNyFFS3A6P1U0bENNUyhuS2NfczAxaGtdLlc7QUxoRyFsVjQsYExVMjJjRjJZbCxdNV9hXGFfWzleODBuYUVfdVFZLEwmX15yZltxIjwsRnJVTjdlaGZUMERTQFo2bS81bENuM2pfUVRjLildPFxtTDE/JVpqJSVRO3JdZChfUV5xaGVkXDxPX0MkYS1LL2otcXNpIz5vLCJZTjpRbFhubiMqLjdmKmwrRVtcbDlbbG8mPitvczUkQj4uUjtyVTFHKkROYV4mcCRqLmBJXD5JSVdeOjw9PkNBJ2k7LSFrKThgcGY5WGc0KzJkYDEoPyclYmtQUk1hKiMxbUI1cDdGWThqUWJdVm01SFFnUjQ1Y2tRLmgnIiZdPidqZnEjJzE5K21ZM1VlJktaQ247JjBpIUU+aydRPUc4YzBYZGQmOWM1IkVWOFs3UF8tPlc1ciUiWSc7MEMtSjEvNGlqS2Avcm88TTVuZmNQOGtoazZRJlYsa1VuKEg8PTRWVDhxRjEjMCFmPXBUbVVyNWNXPlFqMHNJQiNTPjhaWURCdUV0QWhSSk47X3JNO1xgK0tDaiU9LnNgaURHSD5vJW4uJF42MnNcJThOR0ItdGlzJiZiP2Q3P0cnJjVOYDtQLVhkPmREIWtCTktYaisrVGU9YSg8TTxRaCheT2hTWEZxJXVkIVhLL0BIXjg2U0pZTEI4O1ArOE1IR2dbaSluJ1ZYQWRdOm9xR0lUVSJUQ0M+VC5ddFs9ciklcTE6NSlYaERzRShHQilYUSFEYVpVJWsxOl5IaGtzZmtKcG4xcC5rLkxPUCFRMXBea2dVNipdbChpUkFGZTgtTSRJVGtpSzVSVFQxYEQqYF9YcTNNVGBVbEk/WS5eJkFWXHQ/SyhqSzM3cDVKU0k8KVkrcycnQl4pMVZfVGYmZWAmQDpEZ0ApLzB1UzxBIjVMMUUjTVklY0ZeNzFEamNkI0xiUixQVmMjOk5VISllb05xOz5eJUg7VGxcLlFLVyRlNlZnKlpKY0wjMz9gZSxLPDpzMHF0aCVpYV9dRioyMnBLJSMkSGouNi1RJC5ZRlVxOD5KMVgxLFwmYlVhTGhYU2hOV1tfTUdkNlNLVC1cN1hCcjdpKW4mSz1jWl1tZic8VzZtajhIWklvYiJcS25TZnBWI080TE5SW08rajhNInBmXGFxXyhxM19pckg5K0IpJmtAZF0wLj9dV29LKjlCbDAySWdfQVY4cUksJC5LN0w8Tm1WZS5hI1doVVAvZC9wWG9CazBhXDZlSyIiWD9OcWxaSTZvMSFtIlItZlNgRVk2UD4kaSE7JElMXy9lTlI6L1gqYG1jMiZGLUJWJCckUUgjV2AiXyQkT0RyU29NYy9aPUxxMm9sMUJTX10mTmJVMzI+aihPP1pfcm5kPFZUcHIxNCgwSUBRZyZgbiljKWwkPkQ4MUlASSMtPmBtZSlqPVQxK2VFWTJHPlsrN2IyayxabSNLVC5LW1BSLCFfIlFkNSIoQElqUGpELVBIajBMNV0nTlFhTS0rVHRtZkwhTj5pTiQ6UzlVbzAwb3I+SU9WUE9kZSJvOnUlI2hqUURQQnIiXFs0VSVLNDsrNCtFZ0RtbDJONVAzXTkyX1VtaUxqOWxjcEhRPE9xJiNdbUVnOSw+RiZSXjNSZSVOOUQ7ODk2VTBeNUlkaigvTColYGxqcHU+PTQjKDwqKTwmXDZEUFBkayY7azlMUE9VIk9HcSlvbk9VS2NYNVNNMT1yVzpiQWVwWU1EXmktY1UsOiQtJ18zVFZMKi4zR2ZfRTlyTEJbW2NvZjgtdVddTE9pczxPaj1tK0YwKEoiJzNiZWUhMCRJXEBbKXBNLCZYZDNPUGxAJTUvdFxuKzEiUFlBJmFrQ0g6bD1pYi4pMFwzQFYvTFFJTkhpZWExLUhAbE1abVRjKCdgITA7MkAqOVZlOGhmW3JVRVNNJEVGcGRbJEhOKV00J1k0WDJSaG09OTdWNlglOj8jSmtkUClgdWwsOUpAOj9dIUZtTG8sX1pcZFNPIVs+P24+Tj5cSzlUTztTJVchWW04KHNUQFokZjRJUWw4RExBOzg7UixXXUZFVXA2OS1ac21LdFRcViVBJy1maTIobz0tLi5gJ1BFRV9lJlBqT1RzZ1Z0NzhPKT1rV0hyPFtaZHJoIjZIZFU0TG5sViohPEBrJ2tgQm8yUShlazBxOFdmby1PQjtqLVU4QHNOQ1hDKk5STWMuLCJvK1hMa1FqUTk8V0RKNz05PzhrVUpxJ1hhJ14qOTpPQS5KTzFWVHNAaiotdVJiKWVbaGFdLl0qPnAxXnVYWVRQRmBPQVZxNkpDNllcaVYwZWdqZU9cNClNXzVfcWpqODU5MzItKVVEKz9wIUBmJTY/Yi9JPUNMNGtOSWpvSmZWSjoqYzgjbW45JipfLEU/K2dGRzo2WHUqTU5xODM/QUU8a1xSIW1jN00vQDg3RENXQVMnKyQ2PUdxOz5CYTFARkA8IzVcbEZdciZgRlc/MHFwbThAUyQiLzZwYj5ULXQiNlVLTDRqKD4kRUEoS0o4Tlo6U2wtYlY5QWUuOipkbnRcdEFubzNHXzBsUGlDNidGUyJOLzR1RS1rOChUQ0hRcjRMOFBfKFVLXUNMcUZWRHByQTZxSi0hRSpeXFErdT9CWWRuRDJHLm1bK2JZUm5bWiwlPWUuLCprMjFYWVY2QF5zbXNGKkI0ZmksM3RLZEFcRlxuZGA0M3NlckBENTI/KlVGYVkvKGpTMTMoQGM/WikpMTVvRzgpdCQraEswRzUhQERwZyxjMFhuRXI2X0FAWz9IYjZoMTR0a0gkMyJHKmdaNidgUCIyT10+R2suVHMua1goXWw3WW1cbitSWnA9OFNKaFE1SD9kbnNzcGpEIXUpXikhNFY3QVtQXV4xLmkqdUpeP2FRaFdpLC5hYE8kIUMtMHFtXytLPSdndS9HTjYoUVlzMT8tYkEkTWZrMGFbc2BsaTNFZjhoUSRCX2hOYiUjNyZJclgvJSkoRCEmNSM8ak1DP08kPlZGIkpBO2A1MTg8PmwobUVEVT9ENy5tW2YoU3FbIjhRSylbRjc7ZG1gRmJlYmFBcyopYUxmNkRuJlZuZ1JpZEMqXVwjcHMoLFNbVWNmJitOWjp1SDcmNmdxVj5dNVFeNkQvUFlnXjMqKTliSThNSnI/NlhccCYhZF48V0s9MlcqNFheaHFWVyVlKmQqcTVgQigtWkYpI0ROOjVTYnJFQF9yXUJaMldRWnIxQSNUSXQxZlQycmBMIVkibF8sai42YmxLWzoyXSxvUylvaERiW3M5TTttMTJdUkJDRGtERElnXzBGQi5gPj1QSj5RY0xKUEA5dSNMOS4vIUlMZzNhIUJhTSdvXl4wXllhXDZJZSFBYz0xdWQyQ1tVWiw4WWFgMV41Xj5VcVFfR1RITTY0RXMoY0RxRlZwIy5IdE85SVAyQCo8IzY/O2slWz9ZL2ptLFQvUitzQXAkTyhDND83amRbLTIkXHRJQ0pmamRKW1skQ04vIW9iMDVULiJFMV1EbCo1SFcrKVlFOi8pYCxFTiJVNmFfQyFGLF4sTCtjLmBBa2tAbHNAPy87OjQ/clFGTCJfXjVnQmkmQFUlND1LaERAa01gTEZsaDFicTpVZSIkVSFMSGUyPzEzcilALjo0WHVgayRkYnAyLTtyWEpTPklsPlFTRSRWYW1yWzYrMVwlLkwkc1k0RTVVQzIoTmcsQFUjKGNQaGUrK1FLPHFXa3BWXCdFVEZwJEMqPEhjMC0lZlUrP3Bobm9bNWllZDgjZVM/Nzw9WDk2QCw2PWNTdXJiZiticGBBbl9IIkFbIjFPaC1rMlgnSEE2NVtBZUlka2VAXGJoKVBcR0FGMW4sRy1+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MjQgMDAwMDAgbiAKMDAwMDAwMDU5MiAwMDAwMCBuIAowMDAwMDAwODUzIDAwMDAwIG4gCjAwMDAwMDA5MTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NjZhNTM1ZWMwOWQ2MTQyNzk1YzE4NWZjYzE4N2Y0YTk+PDY2YTUzNWVjMDlkNjE0Mjc5NWMxODVmY2MxODdmNGE5Pl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgo1MTk5CiUlRU9GCg==" download="Perfember_Sample_BurgerJoint.pdf" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0A7A5A,#065f46);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(10,122,90,0.3);">⬇ Sample AI Report</a>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#5a8a6e;margin-bottom:12px;">Categories</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">⏱️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Speed of Service</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🍔</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Food Quality</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">😊</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Customer Service</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🧹</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Cleanliness</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📋</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Compliance</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎯</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Upselling</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">👥</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Teamwork</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📦</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Stock Control</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🌡️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Food Safety</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏆</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Recognition</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📈</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Sales Target</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎓</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Training</div></div></div>
+        <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="padding:3px 10px;background:#fde68a;border-radius:100px;font-size:10px;font-weight:800;color:#92400e;">AMBER</div>
+            <div style="font-size:12px;font-weight:700;color:#0f172a;">AI Report Summary</div>
+          </div>
+          <div style="font-size:12px;color:#3d6b56;line-height:1.6;font-style:italic;">"Bobby brings great energy and exceeds expectations on quality when present. Punctuality requires immediate attention — one 4+ hour late arrival documented this quarter."</div>
+        </div>
+      </div>
+      
+      <div class="reveal" style="background:white;border:1.5px solid rgba(10,122,90,0.15);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.05);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+          <div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;font-family:'Nunito',sans-serif;letter-spacing:-0.3px;">🏥 Healthcare Pack</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:#0f172a;">Dr. Sarah Chen · Nurse Practitioner</div>
+          </div>
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoYW5vbnltb3VzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKHVuc3BlY2lmaWVkKSAvVGl0bGUgKHVudGl0bGVkKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0NvdW50IDEgL0tpZHMgWyA0IDAgUiBdIC9UeXBlIC9QYWdlcwo+PgplbmRvYmoKOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MjExCj4+CnN0cmVhbQpHYXUwRj8kRyk0JlVpOTdeZTklLlMvPFA7ISRxMHVZOW4uWDFwTTFsUWJMZ09YSGtTYlxLclticVkuWiduTS4pMC8kInIrRig0SG0qIjMkbTA0bUhUPG8/NCRzNTMyXUhaQDEsbmxOWVxBPSRMSSdOYVlsL1VNbmtfMkdVXV9EJi1tPipYXjA7VGhOOTJJMFQubj5ha04yZT51RmguU0RrRDQlNzpRV2ddOlpMJ1JlPmU5WVVqMGJ0UWBwOlhaSChjc0VIYEFpYUNYSCp0SWojMDw5OystdSEmQGU5PiVMQUEnc0U6MTpGVFZLVTdtRCpFNCc2NCJpMipgZjFrWEw3QkAtN1dYP2tSb3JAKVlfNC9RIyNeImJJI1JxUmdeKm0hPk4rcCo5PVczXUZCLV9kJztdLHQ3JU1UPEJhayNMQmNYUEYxbG4yT1opY0wtQSY2Ii4wZUk6bzVVOSpiYz07YyJANHBjMV1CUmg9bl9rXyQiTjFnOiciYnJ1OjhVck5qK2JIaExCak5fZk84cEx1UGMuLScsPHU7TStXQjlwalkwLVgiOjYtciEoVGghSkUpJF9vZjItQD1KWiJhUS4yN0JDJS8jbUoiSHFULz9uM3AsZXQiZCFLTDdsO15taGxaRE5IO1ItZVU8OT1WK0JCbi1xcS1SQjUrJnN1V2khWlY0UmkhQF4xN3VXKk1mWm0lW0otSXVaOGNwJ3JQSERrY1Q+YDhfKGMsUSs5ImIiTk9pRkZ0X2R1WGRpJCZHbCEqajQpUCtwcDRmJ0lHJ3JxKk9mW1dfXGU6NEhsQl5Ua3QjX0UxTjdDMWRsTDdORjlnMic9NWE8ck0kY2QmJl4wbkZKcjFqSkc2SmBET1doaF09aSVoViNSYWN1LXBkR05VK1cybjJpTVpjTE4sKCIqW2VHPFdmOkRhMUxWOFFpPCInNS1kZ1dTT2hHNCpyclpVW1s6THE1PzsjKEpLSG1XVSJcZW4qUWVqLWhjJF4xZ0JcRmU5NEwib10qYl9uLHQzP1o8cU0mcEQtISYiJ1pyQks1SEJUZjxuSE9UQS9lb1dJJldsWkVEJEM0N2lFVTRnXDo2cU10Ty46KWFzdEBYbUcpYEFFU3NrUEhoW0JXRVZSZ0QpQGZuZ20yMysjaSleP05iczVjIkdtdCFhOkY+LycoOmZQbEFwTTE1aixwNUlPTSI2USFTT0NCSCZHTGEmRWVDV0pnVmdtLm9kTT9gQGxacj9CXkJhQjRuPEFcbTFOLkUoRChnJ0ViT01nT0tnOyZCW2VyWUg7PS9QVjo3PV49IkEqUVszNlAxZyhtXCphZ0NvJCNeXS02Mi8kMGVhZiQlbzQ/Q0wma0ZHciRhOFpDWzM6IW9cWSJGSilhKzo6LVUqSGtyY11ZYi8qTyFnVzMjUiZoY1w2T1hBJk9CRy1MMic7aGZjZSVXV15PPTteNGhsQzllK1s0WlBoOyMkSzBpSVgsSXFpYTBYUCghUWonRlIwRjRuRT5fbmhWNkJvLWFbND9gIT81O0I6NXNkaj8wb3FcTnIoKmxqS1VGXV5hWkItOWAhJT9WSHE2ZXBJOC9ANUA3aFZkUEhiZ2tCS1FDNSInPm4sRWNgRiNRcWFsVkFwYlojWyQ4UnFHYDVePlRRUXMhW2NFXlRnZS0vcSpgOSFxW1lOUjo5b1wqQC5cVy0jbXA8ZC5NNjxNMTNUQyZdQjdyTXJQc3U9ZG5TMjFxcU9aTlxFTVxuck8sK0JfJ3Rvc29ASUU8dCpnWWNObUo8ayg0MEQwYTI+WWZVNChhITJsbklBbG0rPHIocWc1dF5cb0RaT0RxVmNzajVHaylbYl1TTWhYc0NpKyc6SGYyRVBTX0olbFtENTxvYmk/V0phPkZTdUVgQEMvMTZSKyduMmJQIjNAZWFVKFteS2wyN1NzT1c0allTR05iVTxPTlZTTCYmTG9kVGA2VDxRRExJTCtAVGhKZVpiVEs9OGg+K1tyQWFidS0qajFnYmJsNVxUR0l1X2c9UWUlWTFBJ2ExcicxWmBrckhjdUVYSmk2ZWgtUyJUNzxKMCZkZDwjaCpGVmFlT1RiQD8kYVlqJ0hlPnFJMi9mNzJsSmtGIW5EbE4yRlw/MmxWWSNXTz4lX1E6MGlBUyx0TysrJ2UsWDNFIlY9ZVo7XiJlbS5iPlpJITQ9PFRhMDM/Rk1rIXI2SjxDPUY/Pk5KXCZYVDxuKyQuYkZicXNzXi8sTFlxUkItSUtuWlIpRWBeOUxEXXFhZGs0VEZtKDxtMDctajdwNDNFSFFza0VjbFNARU9zZiFGPlE4MTFNcT4kM1ZiXGYtMW5aYWJQT2tnIjFsZF5lMFZZJklddU1nNTczQiI6NzdPPjdsZS0lTVQ6LDklTUltY2Y9XXUkX3AlQmVuQFVcOSxzMlxpb3UuT2pcPj0nJUZKLik4O10/aWdqcUBYaiNqWUcnaTtOXTorSkdKcCZpZ25jSHNUNj5CWjxcRWVXPlRsWSNxW2xaVS10cjYnYTxQOG9NK1glJl1tP1wqLF5QcFIvT0BFXDU0Pz1JQTEjazhSby4lTW8jLGBZQk5ZTCUsOTxGdC8/PTUxNjYuMVs0LDZOJGFcVCQxczVJIS86VXIldEcyZyM+M2YtTDw+Si8qOCdXYiEpOW5rYlYsYTwlJT0hKG87YCMmckA+XSFVdWJYOC4mRDsmMm4qYVUlREVCJ0MkRXVsKiFvZzkpK2g9VCtGP2hLRyImLi88TW5wLVYzYFhjcC49ZTpiOWc9PkU/KlNPNFAmbmhrXmoiSW9aPzNMLWtyQnFTMEVXPGckVzVrME9mX0JPOUhCRnIyMlUlUUFYaGVPcTxOUiU8Yj5sVnJHQTlBQWw7ZjskR3M0LVdfPmBXI2tCLiheV2kkMHA7WkJEMGEwNSRCcz0nWFYwdHBDbV9lQygtMXA9dVBcJDY9T3M8TGksVS8jc3BDN08+JU42Tj1yJ187Ni0sdDZcOjUiI1djLVNMaTI6T1pKMzREcTtlLEIzNz4lRjIsQDY4QHRoZEJxQmBYP0tkJ3FuLWtfajA/Rmo7V1BxYlJGRkwhPCY1OEpyUC1VTFskREc2Z106Z2cyO2IpNUNOITJyUW9Mb05qbjE9YC4ySnFXWk44MGdFVjg+T29haihaTnJaJEphITVVUiFHNy5WLV5VOSk1Oj9kPWxXL1dicUlhaGFNaCJgWUBpLi5XL2VsM2NUQjk+dF4vVHVmPmpqKnBXY2AzYytXSUNOUXVMJkg8J29RW1tCQzZfN1xHMUQrZVAqLWomWGteMSRrJExNKWgnODVSKiVfYUpOKDxdSCdJbDpAcTYhJzlQSy9SZWphMjsnSFFGYC9jZ00yOSpmIiMvIms3Vj4/Si1SJzF0VVpqUWZCZCwrMyg7WT9bO24qS2VESV8yJz9ALSIhWCRLTzJiOW45ZjQlYC83VWE9QSJdM2ltZ0dpai0rOyI+YV91MkMhKDZvNTZvNiNRUkU8aTM2LEs5byIvO0RlIjYrLiZuTW9TIz0/V0piK0ZkV2tJU0M5NVRrLkw/OnJbNHUrNUFTI2xjL21DWWVNdUQrRkcwX19uO1M3aTkqZyElY2MqQTVNWy5lPzIuaUYtLD4vY0Jsa3JWaiF1KmVhPyNRMGNLNDVRNzoiamRsJzhyZV9nJDkrczRDNlo9Vy1ZQUhKV19Bbl9aT1EtISFbcGk7TVknW0E3Zl9cTVs1OWwmWF5tRFxFL0c9VjQ4OFBnIVlgJVJxXjpVQWxYOytIZSU1cjtxPGApKGQlI1pMVXE+LmAnUi9qSVQsUGRdZFRtP11FbUw+O1dOW20nPk8nVGcuMVQ1NT8+XUV0aVEoX2VhMVk0JCJcKEBrP0FrOipra188NU9nUDg6UzMmIkBaNFUxP01mImshWixDNCEtKmFkNCZjWm1MSWdTJE5WQTInZDk7TSZQP2YlLy8nOmY6TlMpXjNEXzlOLTYmIiU1Kis3M1Q6Tl9mVzNmY1dNK2shPl1hRTxdKygpWzBwWitYZWgwMkwrQ2FUSHJMTixWMlo6XkFxWGBoPUwwZ1dAXjdIYFtcTSZBM3A6bm1WYmowRzVZbSkmVWVjMGFATz45PTlXXSwnUj9LRFpxVU1ibC0ranBTOEJDYWVtRFc6RF9eN0lEckVBTCFMVCpBJWpLPTQuQypDMG02aVAuclx1ckNFMG1NWzFWWUg3RjFdL1kxNVYkLT05RUZVUyFIbykwLmhiKU1yZzAwWS1dIm8xaC5xLFpTJkZHWjRvYkpaIT5sVWBQZUYpV2xdT086WCFWN2BiX3I8NWY9Jk5cKHFKciFdRnAsIyUhbmM/bk9OS3NrYGBpIyZeSVQiPi9manMsX2BvalVRO1ReNGNOLDYzVGpXUSY8YD5aS2NvXDQ2Pz5uPisxI1RMbyNmPCctSUdNKSczW2s6MTs5dE0hYzk1N0xuOk9RazlxZlNEbVxnTWs3Jz1uaTgqWmQ7VSZDanJPM1g7TyVDIl1ycHJAOmkoVSd1MSJPNilqRGwhbm5INTRJM043UydsQm5bUEtpSCRFbzFwK0Q6I1E5UG4yUzRgMjUscmxpVERxRzdVcGwybWFKXTNJUWpNKDovaklZPihfOy44cTInVWdaRzExXGFbOj8/OT9JdDVXcE9SLnBTc0w0OF51a1YyOHElbU9VYU4pM19tYzVYJCxzZ1RLSmU3c2c6XzkhWUolcDJwa14uTWZdI1oyRyxTW09RUTguUF1YP3FDQSJpR1sjLjFyUDMpUjZUWCRzRSMiNUNwPXJII0khMVRqMmojQSIwNWY9UD5QZnRSLTlrWFFgSkVMX0NVSTUkLCxGSXNSTmFcSz1aSWNgM1VqYCgyIjVQMk5VWS8rNChOVTIxXWdzOjJYallDPyYxXShSXmxkb0ZIUzY+JEtPNDghSnFgMCQwN0dQJU4saFdxcjU1UiNkNDkhJVpiMjZoZmJybyhfUCxeUlBwWzJ0WzgndCY2ZmhvWTJmLTA5cGkkV3UzJSUmIkBZJVFwIVxmQVkrN1NycF5CQjFQLWlJZTNiJ0RoW2FETDBbUCpGK1FwbyN0WW0iPTpRO1o/RVNFMU5qaiQmR1RJUTInTyxJRHQvYS1JY0hQbUM+ZGJhR0pFPTdvRTooRUlrU1VAYU9FUyM9RCtQLmhwTVgxZzVqaDguUDQkLz49WUUlKjNAPjpvdSJyVS02TkdoamJfQ2hvS1InI3FwOFpHTWshNU0jPms5MVZGVWNdQ05pRFJpWklUJzwsJF1tcy9PVl9kb205Qm1UZEdGVmEjSGxyMmxdJ3IvaTRFLytoY20uc2ciVylmOjlMbD08IV9qQWQsSEIuIlRvLWhUdT1ILitDSl01P1lxJFN0Iy1kckhxblQ+KFZYVHVwMjhWdG0oLjp0Y3A0UCxpYG4kO1xuaXFfXU9pJDlPUDg9UmE/USQxUCFoKWgvX1JAJkRtNEksN1BhXTVjT11YcEMhK1BJTWtTJyUxPm0nOEczQG9oJmRGUDstKD8pZDlcQU9ROyYjJ3NRY2I1ZDJyOUEzQT8/LzZcW1YlZiNrNDtUUjgmSWhubV8oKUhBMD9iRG1qRzpzNi1NdU5kI19Daih+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MjQgMDAwMDAgbiAKMDAwMDAwMDU5MiAwMDAwMCBuIAowMDAwMDAwODUzIDAwMDAwIG4gCjAwMDAwMDA5MTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8Zjc3MzNiZTQzNjI0MmRlY2Q1N2U0NWY0ZjVhZjZlOGY+PGY3NzMzYmU0MzYyNDJkZWNkNTdlNDVmNGY1YWY2ZThmPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgo1MjE0CiUlRU9GCg==" download="Perfember_Sample_Hospital.pdf" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0A7A5A,#065f46);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(10,122,90,0.3);">⬇ Sample AI Report</a>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#5a8a6e;margin-bottom:12px;">Categories</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🩺</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Patient Care</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">⚡</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Critical Response</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">💊</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Medication</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📋</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Documentation</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🤝</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Collaboration</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📊</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Clinical Skills</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎓</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Training</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">⏱️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Time Mgmt</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">👥</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Leadership</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏆</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Recognition</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🧹</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Hygiene</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">💬</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Communication</div></div></div>
+        <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="padding:3px 10px;background:#a7f3d0;border-radius:100px;font-size:10px;font-weight:800;color:#065f46;">GREEN</div>
+            <div style="font-size:12px;font-weight:700;color:#0f172a;">AI Report Summary</div>
+          </div>
+          <div style="font-size:12px;color:#3d6b56;line-height:1.6;font-style:italic;">"Consistently high performer with excellent patient outcomes, strong leadership in critical incidents, and active mentorship of junior staff."</div>
+        </div>
+      </div>
+      
+      <div class="reveal" style="background:white;border:1.5px solid rgba(10,122,90,0.15);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.05);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+          <div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;font-family:'Nunito',sans-serif;letter-spacing:-0.3px;">🛒 Retail Pack</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:#0f172a;">Marcus Webb · Department Lead</div>
+          </div>
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoYW5vbnltb3VzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKHVuc3BlY2lmaWVkKSAvVGl0bGUgKHVudGl0bGVkKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0NvdW50IDEgL0tpZHMgWyA0IDAgUiBdIC9UeXBlIC9QYWdlcwo+PgplbmRvYmoKOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MTM3Cj4+CnN0cmVhbQpHYXUwRjlsbylKJyMhVTRpM0hTIS4waUxyIShjODczOFRsTUclK1wwYyIvT0IjRmFWPzZSaj9PTVkkMC5KXSgnPjdaKzlOZnI5azItYUxBM2trRUYoLXMyNihgOkVxP2NlLnQubGxaNkE5THM+SGBKITYuPythYVAwQCJnLj0mS21UPERmYyQwVjMmXy5EYSRrPWNaWEQwIkIjXVAzR1NbPV9QXUBXT1VIQE5MIWp1RjJrJic/U1lzMTY+PSlNUThkLEg0TGg5cixJblJpXz1oTGM7YGtqVzVvaCljN0FYIyQ2cnJlRCkjJzlTUkVAIjpCVD5vMWVzbT5SaWFsOFhNbGhMRUplcGomPWdEQXA+WlEpKkwoSmteIldGJyU5SHQ9TDhzKGVaR1VASlZQTzQkViNbZixqNTE1SSNJUVlfdSkiVT4lUl46aDxiQUNmRzlGPmVpbj84IzZyRVNGJlNITElcTlJDPCclTTI/Ul5mJFYjYWI7SCtfKWQ0LDY2N0VpSVBUbCE3ODM8WTE0Z2JnPE1EbEkmZl5uN2h1TS4tIzp1XSNmSHVFOEowbTZEOGVXMmFQSDlOb1RCJUlLMyVxKVlOKFxkZjdLISRCXzBMYmEoSW5jQSY1QCxaO09WV19sQipBXSdaWG1KJzpeOmAtJnJZPzBLXmR1SnNGLUVFZyM+XE85PmZFLTksQlk6IzolWzYzSy1dK109Y2UwVjJmPE47NGAjNS9BJzo+R1BlLCsjKStvbDtNXWVlSGBWUjY2dVZFPi5eTi1cMSc7SWZYJj8rXClXYjA/ZVkmPW0sR2VIaVolb1g7bU9pPl9OUjorTilnW0xhZkFGVkdVXiFLTkhdajo2cU04JzwpRSc+TjtMMikvR2osVE1hUCoiMCg0ZmZCJFJxZFZrWmY5JmQ/RGk7ZzdOYlZSPG8iNT5pOWA+czEqJE0+XzBCMDJEZyQoKzJGNEJuNFVHV0EjXTJcSVMqNkhYMl4oaFkmYVBDWzJHIlVXUyhnXTAvdTZJXmxncktBWUBFWGhSL1xGNTskK0lHSzkzTltxV11iN2AiOFNQZCwlcWcqJXVuKEBGdUAhMXMnWjQicyxxLENsJXBSPidCPDBiKEckX0MiVVFWVV5GQ3FhQyQiRUgqPSIpZ2Q0TThZa2U8MkBiL2ppbmxhRG9bMTRHaEhZUExCUD8kQ0JOUlQ+VSNAQ0JyRj5FZnAyOG1MXkttJlprTWR1QyUsR10rVzpfbl9FXEpfJFkxUCMzM2Ijbmc7JkJbTU5FQEcoRkVMVCNTLmRaVTZMQDgkakEmJ01oWV1nWkI5a2xtOUJlbyZTWS41JlZJJ1FDTCd0JEdyKGFSWyU3Z04haGslJFslZ18/OjlePFpJJDFOUVg6STYpU2pAU1E5NGVvcytQXC8pUFNRbD5YYlU5X3JWR1F0W3I5cz9RUFhSaHJwXkFvJyEhXSU6KzF0JSxaZW1OS25QP21VQiU4OyMyTCNXJFcuTzFMbipZKUckUm5oTVtWLV1NIW90aGk7a2FmaWI+ZTgwc2RgND4vcTg5XUtqKT0ka1syT1g6YWREOVlNZS8sVjgoKShmLFtDITEjX10iNzZCVDdoW0pwJllKMjg6OE1zJCpUUCwtQlVyazguVlU0OzJqNVEmN2dmXWE8TT1OWjtJdCosIyYjPUhhNElNRVZEQlZmTkBdUVUxSUBhY01CMm8kKCoxVkRILWA1RFw8PiRfYWJVT0RRK1FYNSo7VjhhbS9WRWEhOFkqVE5uTjsvZ04/NmxWZzJyPloyK1kzPSdyQ0E0K0RecUczc0luK048clZgc1lnL1wnbkA1YmpFY2BXSV5GMjAzSSVLZlE6ZnBRX0c8JSNmNzFzV15WbzxWUTMpKTNiWVo6VmQ0WW9MKz4xTi89VUg9JT1SJztBbG5fMjQ1QUpOZSFxc1w3ZCQrPCk1YCpSQG9cWC9ccnUySztZNUFHOSU6aCMkcCMocTBMKzc6JkVfQzZnTmJgX15UczNOWS1nND4vSUtzaGxcRlc3LVxlSSYocm09PyRDXj9vL1NrXDZJXC4vYWpdWipENXRIVG0taXA7UUVRVGFJVEdscz9RKV1kRUJLLTghYyU3M0E3TUA+UDs2V0cibXVRXDBjOVF0JCdTcUxMPUEtSjk1YW8ibjwuJC8hXilCJFE/KmIxLWRDREFHa1VELVxvWXJsQCVVUmNYRnA3ZiwnXnVuR1U7R0tgT0Bpczg4cCZhPz1rNUs8LDgjIl9MZmpROExoWkwxZkVmI1ExOlEzKSdUI0NSUiIsNC4wQyovYz5jRDcpOlUlIVVEYydzUCZTWS5FJmFPdS8qLm9GUF0kUFRvJ3MvLmZhNUNiOy9CJDc+YmA9L1VPLyJuYGZEZExdJEBRJ1IrajckKWQkXWdUKFdCSzYxJmVSQkNPOi9HXiJrQiQ3ZkEjTXJPOjgkRyNxMTNhUWRAV1ZNVS1HMTxcPkc6XUhtNzpBKiUxMU1fPWJTclchT2tbYSUvL1BQUj9eV25rNj9CIl1IOFBQP09WOyw2I1dEWSxKSU1NKUArdDhkLFw4LFkiRXMiW0wsIV0hKlUpQVFhXjUsQjAjZU1YbGt0WkVtTVdbRFRMcE1VQ1I3TCxNVzRmJGtUZm8jQTcnRE1CS0pobWw+W3NBLCc9bShwTz8xZ0hKNU1qQz1DZiVkT19zX0EnVCNzYlImXS8+OT5uJ0Q3ZyMjKFNQW3NYJD5HWXMiRyFGPUo7P2AhLW8qcWg6LlhrTTFhOXJtOzlZKEopJVJyVWMuK1ViS1dDTkI1VnIqSzIrJTAlZCgrQi9FUFJuK1daKzNCRj9PZVpQJjlMMSc8Pz1waGheXTNDM0ZjQWtqNyMnckYqYHQ/JENFVUNyXmtKSD4jbyxtJyIlUEQwO0pwb2MsUkwsKUxaKCgiZkIrY3EoOk8+MGRFdHJyUEksKmheVTdCU0lZZCkuQGxQRnNcXz5hYlYrVjc0QUI0anE1SyhvTWMxUD48M2Vbbz9mXzRGYFs6LEZLYWwnSFtSQyZoN2MnUzdUNy9vTiJBMF5PZ19mOUkqaS0zLFVGcSYpW2lta1VjS11JLUZranIsKSIiYj0/NFdjS19HSG1dU0BvbzRkOVYhLy8sdSEtXFJQIycjTV06NyxyOipWbiUrQ19JTT5aITYhSjdIc1pUQ11mUUhkNUpLRWlwSCNDO2xeRT01YGBBQDEmKk9yWkZ1LUI2YXJSOWtjPGRuN0tdM1hBTTBIKk1XNFZLUFs0ZiQwPkM0b29nU1poTE1fZkMiYl4+NCZHLCg7dGZSUEFvMzFTJiwmQmFzJS0hQ09IIlMpST5xMz06MVZeX0csaHJaMjYhTVNTODpTbC5HVjo0cnQsUGNzcjJpZWFqbE1HPXBaKT9vczpGPGN0PmBCaGg1JSdXSSFEPS1JcVA5cGFVZV86aFIuZ1JELi08U2NOMCQ2VFJNU19GQGdGK3VVXm4iW0k9TXJRSzRUWFpWai1mczoua0A6UlVlTz5wYlondThVP1ZaLyZBRFxIS2hvN2JAK1MoM1JtJ24nW0JqIkRjbzR0NmRzVm1vdDxRYWJjViErSmE3PGNYSSFFLnBbXjNuOG9gQ0FmRjYha2hMOi83JF0zWGhVV2FBOGI3UW8oWko1L2poVWxfVUc1ZStbPTxTJ2loJHJMMEIsLG8+XyVzUjNbO1E+LTJHKXJTQk01J29kXUNdQFBfb0dQQUk7N3VTN2o1bTNkJk9OLmtoWidLTHFwJSJrRzZhL0tkSEtkU2pqLmhVOlpIU2trYEpnTFYmKClyKD9qXXNVXDdJTkY6NGtaMjhvOFxGJkNWUjxEa2tgUSdlMGpkR14nSlo9VCZXPm91UWE6RU0ta2MtODBPdT9NWCE6bzVtXiwmMzckal8+cW8wSikkJSdpMFdKPzleIlhwQkRacU0mIlRCSzEzWl9ObTA5ZW1iWkklJStWbXVHLlJSJ2A/K00lVkAuXEktZy9HTWcxN3EhPmpDaDtva0JaRmVyNideSSllQiwxKGNbXWFNTWEvdG1tSGRnbSlCbDpEXDEoRjB0L11yN2UvZFBMMXJRMGs0bW9CN3NTSzllY09FLDFVU2JFb3NRSzoqVUROOGkrTWFUbT5KISI7Mjc3Qk9OJzlbLVRJTWojW3AoTkI4JCNdbzRBS2tNWiFNVWxsR15pKy8iUW10RTcrKUJtRy1dSys5KV4jJEY8V2w1LDU3QnVhN2pzQiZgKCVaXlJnbio+TmJWVjM2WGJdLGMqYmNYcmdtW1YyLHNjTU1PXjhNbCQ1Pk0lXy5ILiZmUHFEaTpTbUFCTTwlT3NpYnIzRzsjZ1IjIlNAI1QrOzdKMGlKR2xOSGA0JkBJPiFGcWpObU1VcGdkOlw0N0xDPmslXlxUSWFxQypBSkJmaXFZOmdFR0QqLztGYC5aO0VwMmkvVDVAaFA+M2UiLk9OLU4hQmpLTEAmYFNhSkg7WDQ1OlthKWEmbDREPSRyLjU1USlrKTNPZyFBJylsX0RyXmYncnQrK2ZoMklHLXJFQTZRRzM4PDdGMW01WG1bTTtZIWpyaCdUY1hFTDcxV0cqbDFlMCQ/Ji0rJWZRQjBxRE9YIXBPNTRGcl5QQygrPl1NUnJdNTgjY2JubXA+bi43U2E7bSVLaWxQXUVfW1ExaDdwXi0yI3FlITQpcChDXFVrW3AwMzJSW0M+Z3BcNiNrPmUlQ1RBOT1Lcm5wITVFJkReZWZrLFtZUGV1N0ozWG89XF8jUUZdZT9taDVnS1NpOkk7cDpdYzVpLnEhdWhecGdWREtUTDg8JTxCTShrTkcpMSVtW0Y6O29kNUpuTkRsOXVfKzQjZE1mPz8qIkMlbzwsME08dTZiZSNQNmApaFIsbkZQRC4qU2puRTI3VypNZW82cWJsT0ZHQTR1OUpNNHFgTlA1I3NJVDJYOFBhRmdIdEktN2EmQVtYOGEkbXAnUzZfcyE5T2dBKTktImgxX2VjN1ljZD87Zl4nSlVccFRuPWElMkUwaU88VS5bR14/dXFtdGpmbCZYSTA5ImtoPHMiQlpHIiFiJC4lSVhzMTlAWDNZJisjYS8wJEliKlRfaShKMVddaig6WEIkbUhccWYzTzpOblM/PCFoOmgmOCFHMytYWFw4Q18iVmZbPz1dKitbbkdfbU1tTD0rdXE3NipqTicjKztoY1snJyEqdEAlM01wSkQqclNRY0lOPShWWityLDhqOkJ0Uk5AcUQoZl40RlxmJ1AyS2pcN25pVzhRQ1siXCpyKE41dDJbUEUvX2k8OjN1UjMqcFwvOSJQYSVvKTUnVGkyNVIzb1RKXThLc2o3WCF1IXROQU4mK08rQ00pK2IkUlwvYl5DNzE8VVJGQyhsciw8NlxuOXM2QilmdEUmOD5hLjg3VFheOTJoKUg6MjNOY0JjTFtYPCMuVEo+MlIlaGloaz5uQktoLUZsZEw1WkszOXNsQi5eT08zP1VcZzpAKHErJDk/QV0paThNfj5lbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCA5CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTAyIDAwMDAwIG4gCjAwMDAwMDAyMDkgMDAwMDAgbiAKMDAwMDAwMDMyMSAwMDAwMCBuIAowMDAwMDAwNTI0IDAwMDAwIG4gCjAwMDAwMDA1OTIgMDAwMDAgbiAKMDAwMDAwMDg1MyAwMDAwMCBuIAowMDAwMDAwOTEyIDAwMDAwIG4gCnRyYWlsZXIKPDwKL0lEIApbPGRmMmRkOTczODE0N2Y5YWZhY2MyMjFmZTBmMTY2OThhPjxkZjJkZDk3MzgxNDdmOWFmYWNjMjIxZmUwZjE2Njk4YT5dCiUgUmVwb3J0TGFiIGdlbmVyYXRlZCBQREYgZG9jdW1lbnQgLS0gZGlnZXN0IChvcGVuc291cmNlKQoKL0luZm8gNiAwIFIKL1Jvb3QgNSAwIFIKL1NpemUgOQo+PgpzdGFydHhyZWYKNTE0MAolJUVPRgo=" download="Perfember_Sample_Retail.pdf" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0A7A5A,#065f46);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(10,122,90,0.3);">⬇ Sample AI Report</a>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#5a8a6e;margin-bottom:12px;">Categories</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📦</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Stock Control</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">😊</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Customer Service</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏆</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Sales Target</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🧹</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Store Standards</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">👥</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Team Leadership</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🔒</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Shrinkage</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📋</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Compliance</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎯</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Upselling</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🚚</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Stock Receiving</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">⏱️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Efficiency</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎓</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Coaching</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📈</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">KPIs</div></div></div>
+        <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="padding:3px 10px;background:#a7f3d0;border-radius:100px;font-size:10px;font-weight:800;color:#065f46;">GREEN</div>
+            <div style="font-size:12px;font-weight:700;color:#0f172a;">AI Report Summary</div>
+          </div>
+          <div style="font-size:12px;color:#3d6b56;line-height:1.6;font-style:italic;">"Strong quarter — best on-shelf availability in store, seasonal changeover 2 days ahead of schedule, department NPS up 11 points."</div>
+        </div>
+      </div>
+      
+      <div class="reveal" style="background:white;border:1.5px solid rgba(10,122,90,0.15);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.05);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+          <div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;font-family:'Nunito',sans-serif;letter-spacing:-0.3px;">💼 Office / Professional Pack</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:#0f172a;">Priya Kapoor · Senior Analyst</div>
+          </div>
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoYW5vbnltb3VzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwMzEyMTc1NDQzKzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKHVuc3BlY2lmaWVkKSAvVGl0bGUgKHVudGl0bGVkKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0NvdW50IDEgL0tpZHMgWyA0IDAgUiBdIC9UeXBlIC9QYWdlcwo+PgplbmRvYmoKOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MzE1Cj4+CnN0cmVhbQpHYXUwRjlsbylKJyMhVTRUUThcRzwvYCtnbjd1cjttKjMrTkIsc0wtZHA9RjRVZ19JYjouVURRcVkwamUhZlw3XFsnRklZVl5mIUVhUjJObXFmT2hfLHI1Q3JyO1hDIiZEcGlQXlxwTStWOF9RKDpkdUBDcSxZL0JdVD86UUJONUNSV25RTithTG9sWjsuQCxJZl0xTWZXKzs7dFs0JUoxbERjN2RXZj5NXig2XUtiaGQva0BoVWIqRlxoWEZxMEUlQFYiWjNgZVdgJSMsMjNsZyJXNkU9ZidhWWNZUHU5Sm44WFJYTT1mS2g0QVJvRFlMKk1EKldPXzRGKHRRZD5ESkNnVEBbMypWUSJjQVY9MVFmaWhCV2FZY207JSgxZ0NhIWBMJ2dUWEFDXCRIKVsib0tMPzFqLlVnMEFKUmArTzhVPVk1UkJPMlttPWsuSztlRllycGYtM2pbRDtbTWIsXWshMlBocyFFVDVtXkU8ZXViXF1OPyFQcExXbk9bMkY0OkUwZCtSMHA1Ki5xSUojTUUpTU5AVDo7ZCohLDNbI11VKT4vQGQ0UEFrOS5WNCNnRWQqPzxbcFVyUD9icTItL149MVRmNWUwWSlub15nU0tIJW1uUC1PdS5KR0F0S2BSclhNUGQ1PUZRYCtpJ2dTQVQwPDoqIi9UNEtaL0hOUF9FMWsyNk0hIz1qUzMzK0MqKzYkPlNoImwtckE7WFdKUVNnNkolcTkycFZfLHU5WDw4dVI5KS1NOlpCcXU3KiInYyMoO0xsKkpFJ19tbVo3YSlXOkFqNGVTWl9BSmIiZEYkUWJTSSVEbzRZc2FfRTExOklaQlUkZSQ0UUFbQ3JvWEFyLUtBUGRpWWArVzpTTG5MXFhTOUY7NlpmNlZuSCVnRlo8OEx1O2NDQW9sYzwkLkBWKC4tQ1tkSUQ6VnIkOWZJcXI+SHBKWlJuTVAmVj8zJ09RNWpnP044NzRUVmNhcCs+NWZCV2NuW0pQRUNgNjNRamdzJDRrLEtlb3NXU2RAOD9NbE1Ga01yZj1xXHVnPjdmO1RLXHFkODdLN1cnalNgYkk/TXJLMD5JNj1ubS5RKiNcUE1dVTpdNjwpZ2ZdaGthPEJvL1NKYmxpUnIzTXEwcGdPMlkqNzFhTTtgOW9iMipybFNZOSxdUShWX0JuPydnVmJXPjRWMERjVTgxM203Sms1TUVmQWc7Vyg1R088bXNpUUxdWGI1YkRXWGAsYHEpcEFqUkdHUDtkNz10WGEkOmlzNC5EUHJmWkRCZ2s5LExQMD1iYWsrKSJQUVxhZUZGb05UdVVVN1RPKmdiPS1xUk5NTk8oaXJxayJHNlBualAkRGFIXDhXcGxJUjpWVi1YZFJPYkcocilTQHFMVjYuLURaOU9KUSJRND1tbWJERlpyTVUtWWI4YlZaWSxAbzk6OVAxbm9KZEFjZyVybTwlP2ZVKlBeVjBYOW8nS1pPaVQ5MGpUNz9kX1hbR1RJJkkjM0xOTCVUN0BGMlItWVI5Ry1AR2tPaVYsQjFnUGZkUUQoVG1rX0FYK0Z0KF9WLT1uOU1zcGJcTEJuJlFaJzssaj9gP24tYUsyQ2BvTkhbTHRLJ1BkdSFjUjUiMisnVjloXyFALmkpJGxwMCE8XlckYWBUT3QwWFhtYkUtWTBWR10jWTRLMFBNbWJcISs0SUovPjZmJ3IjbDI7Y0NnQ2MtVm9QKyd1X11SST9mLzEjaTNVQXM+Vjw3MmhEKDQ9K1VGSVw7NSQ+ZmgtVjRdM2M5MT5iPW5TKmMtT2IuaXRxZy1DMy40N28vXC86Y2tvKVknUkFIRm1QJm01VE9sJVtdQyFnYjRdblomRS5ybTNZJEROUCIhdHFZZUR0OUxXSXMmaydVJlEmPytmMEM1JWFtUTVGQzAzY2kzTFVRTjg0LD83KFIuZGpiZHIlJldrU0QlUzAzV0Q6R1liKExiYUpyZSxKXlVeYiI+dURGNzVPVlRlb0M7TXUmQyZXNFlQYGZmU2BpMT4yV05aQ1N0LGA2MyZRZ0o5NUlxZGhyZ3JSZSI5UjoqLkZnJ05EOSFjYmlTTVxFdGZuJEIpYGJWbisiQTBvLS5gLjlPR0teJ21jYT5bcjViI2IhSWQiKmtSYCEnSWBiKD0mWVArajRWIkZaNGtNW1ojOCw3ZD1BN0tGN1M3QVJPZDdhWS9WbjVbajJsRkpqMlQlcU48X1UkWzpPXkZFN1x0YDw4UDxaLiJxLl5CJ10/ZDlASzBjWmdgYUksLW9cPEkyWCc1aUBfSFxCYUNZKTZeSlBIYmRPZz82UW9maE9FR3BtKS4hZkdjN2IoUjtiYWwmWDpdaGtEMCtXQ15PUC0nQkheaUc5IzBhcDUwM2ZCLEJMJy9IY1hHQjtMI0VGS1FPYFhlIlxcSixuPXU5cEBSS0NGb0BLcTdsSEBCJW5PPE9MTEYoVj5MXlU8STdbP0c6OTVFPl10MDUwc3FEP01hVk5dUlhiU1doLjZWUy9JUUQ1Wj5mTUtjOEJAOz5aV15SLipwRHBhdTBnJFtcLlQwUiEhJzRTOD8kSDo6bllTKHE/YktvNDtgIWFTcE1QVz01KGtWc2xkLkw3OilIMDVaY3FzIXNKLlk1J0xdTCRUNldSS08tNEsqRDx1QWk9U0BqdTBQcHJSXSwpZG50O3AiO0lsImsoW2B0UDkhOkI9LGNkO0khNUswPFNSRiU+cTI5R190J09cK1xnL2dBPSIsJT9mLy1BVExkXVByTkRQcV5cNjhJVCNFcHNEW3BNKFQ0NjpvMkBSKChqcWImTCMuLyZZYXErYVUqaCMpLSljaCIzODhuUDQ2IUBGJ2gnVDxPZjlULldmNi9PWGJKOiZ0T29oUTxLcEBAPXJQLF11cipjR29UOm5dQm9oUklYPGA2V1ZwQF9fLz8mbk0talNNX19Ccl01a0VKWSg+Vm1DM0hCWm5mREQ1UWQ4KUojLl5sQS8tI1VjYG9dN1dkQSIuUmtEOyZ0PGwnOWRLZDAvMEVNOiw0dWUwVGJbIl5zZSMsYCpbMSsvPV8rV1kpdS9lV1Y4O1ZjZCVYOU9DMSk8TVpQNm5nTmFNSUYjcUtVdC8+dEJMSyxlWFkxJHIqOEJHOmhFUW9JbmdeLlIwcj8oUDBhMiFNbiUibyhyK1RrM2FBMyxDMGhYSnIlaWR0MXBdRXBJP0FDZylmaGctL1NudE5DZ25mQkZOLGtNYzFGMVZnZlJkb1szIzVQWlVyUUstcXMsLVFfRjRzc11dcSNRNzonUzRxWStKXUQobyg3Ky1IUjoqVkc0MVZcKT5UJXE8STk8dS9eKlhWRygwIl4yL0MoWUAtR19jUzg+R29qVFNuXVFHO0FHQVchNGszP2hXN1NGMGY0MEA2ZUV1WXFqWz5mQHFiPEdJRWdgWTE3JXBsJGZRaWRtJmBIK2lZc1xVaTtGMig/TnNuQ0QwXl5vUyxiXy4vZEA5YnNLRytNUFB1XFBEU1poSyJNJ0FzQklYZVtvbyo6YFpBQT1LUWQkKidSU1prSjMzJnEqaUFONi5VRlpyPiVcTChiPWFKLz1pMEZUSi5iNENALUs8RCNsJ1BlcCFpUzR1IWM0KEBZKSc1VjEsaFRvQytraylMK2cqNGIldVdYQ2VUM0pKNjciUiVuSi5IWDJyWElMWFhONDxGSF0pKGhoXi42KFUhWFdydF1zLi5rbk5GRjY0OnBcNmwrUV5tbS0mbU9aOlI4U0M/KlI4JiNjZlFmVkZoaUc2QkUuaXM9OWtkNDxfSUQ4alFrcFM+VllVWV8vKSdjNz5xPi1eYWdTOEdZOGowb0xcbz9pazheU2U0OmdpRHE4KDVSXGZSWz5mQF0ycmE6K3QqWFclKkhuTz5wQDV1VDheQ2dKPD1kMlFMXj5VNS5MNXApalxOTDJAU0dOVkFXUGZEVHFYdEx1WGhVNT9FbmZbMUVJRXRFJVV0MjA/YCxpS3AjOjpeUDQ0cUFCbVI0YFJXaDMxWmM5X2NQMzAjW15FZUckK0JkQSlnIj5iXW5QVj5nVWttVEAnWDhRJGFQY2JDTitYQmk3N2dOVGJfQUxILjdVL0MxKSspcyskJmM1JSoiKzhoZFBMMGxtZWM+Ny8rQ2svXSMmPHUkUT4hc1p0QUYzbXBDUWhHK3FuRS1BM15NPWxzYlpVQ1JFZWMqZl5GX01FWl1JXkVLR0dJSGotVWBba2xKLFQmdTBcaE5OVHRSdTsuNSVDSmAtWDtcK2hwLHMxK0UiT2hrYENKLUBhLV5fSmwtZCg5LlgxQmZoPXVfdCZ0XV9eYV9lQU1TRT05KmYjOF9NQUZmJmp0bD1PJ3JtUW87MypuZGYiNW82NVdxJlZpcC4tZGVXYTJPIkVvKW9EOiUiZkdkJTJJL3VuZiczWV0zJnFpISYrSDAzKFI5SD8iQCJULDY5WiNeR2pQLmZQWCInQjVjSF1jcykzNDNNJTIhIm81bzpnUV9DM3IrM15cSy5OJFFKRjdNPCkmLGkpOmxGbC1RUDhKMkBWXCZrXFNhVXJmc2kxOzFrRlxtO0ZEZ2VlTkVPbGNVNCtFZFZSLGo5PFFSc1BZYm8wPS00blNYIWhyJzpVWCcoPUgyajpYZWdqNXAuR1lpbmZwOypCOFUsY0AwVSpAZC5LbSdDdSYmNlsxXk81WCltYzIyVCY3PS0iUSZSV2Q2MnUzZG9eaXBAX09JVkokM08yYjRzS1FLKGwzUFRJaUwxRkBSbzpucD0jUlxZO18ycmM6LUpeLE1MWFlNc1YpREpfNyptPmFyOlZxKWQhbV1BXjgmWThaWS9uX3I6SjZoN1g4WS5mOEAicW9uQUgocF9HazMwIScmTkFeWXBPQWRQPWUlSkhtaj1qPyJGYkNIXkUycSZbYSspLG1QKWBralxJWUtuXEsrXW0oVitpbFpCYUpbOWFPRTdpWmowPVlYNmQqZFAoJXBJQFhIakEpNj5ePmpHNmghR2Y1aUBuWmszWF08Ml1KaVZoaTJeJWtsMEApQFlXNmxVQ0E7LUxfb1xqLUE2UVdtSS9nczgrZGEzOl0sOywzKEIjQidNVjZQOy1aIiglZWNWQWsocENFYDNyMSdWciIub0ZAZSE3cTk5J3RkSzJtNGNkZEJrSG5dOEFdWjdnKWJbckdPImtqRWVtaiRGLkNQVihVdThuIzU1PmM6TzZpVmAnUEVLU1smYk0jYiVjI05ULWc7PWNtMENaVT5JZF5OJisjK2YvSGZtOyxlSU0jIlY1TU5rQ1BURjJBM0NJWzYlZm1iVVtqSz1wbEhpK1lUayhwWGs0PiNdJVwqVW1VUWpLb3V1czVHOzJPQFMwWGhRKnRWRURORz1jbkRvaG1UQGk7Tzw7N2ojLTpgNywvLWwoOmlMVkckWzBFQ3A/LU9SSnMnRC1HJHFVc0BBcl9wXSQvK2huaEFQP05tOG1HcyNXQlJRSyVCOHRJQV0qYS9fWlEpMlJWQVZuWzw5VVQ+Vz5MJS5AV1IkTT02Lz8kaG00Ij47KlEhbG1bZkdxZUZLK1JUKXIwSnN0TmtScURXQSdqWGs4Oy0rQ2dHR0ZZP1sxT1lPKllSVSFWSlI1cSp1J0UxbVw6Sj9FXzdZaWROcWZ1NmZTMDxYTklQOlIqIXMzUV9ZOV0yRTRoPyw/a0QtS2EhVi48JCc+dG91TkpbTzJtTnQ5JDcnYzJiSyglVlojJyNccDVDcWssJF9AczZaU2twYitPaEBfO34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgOQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDEwMiAwMDAwMCBuIAowMDAwMDAwMjA5IDAwMDAwIG4gCjAwMDAwMDAzMjEgMDAwMDAgbiAKMDAwMDAwMDUyNCAwMDAwMCBuIAowMDAwMDAwNTkyIDAwMDAwIG4gCjAwMDAwMDA4NTMgMDAwMDAgbiAKMDAwMDAwMDkxMiAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzxjZmVlZmRkMThlMzA1ZGQxMmZmZTgxNzVjOTQ0YTM1Yz48Y2ZlZWZkZDE4ZTMwNWRkMTJmZmU4MTc1Yzk0NGEzNWM+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDYgMCBSCi9Sb290IDUgMCBSCi9TaXplIDkKPj4Kc3RhcnR4cmVmCjUzMTgKJSVFT0YK" download="Perfember_Sample_Office.pdf" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0A7A5A,#065f46);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(10,122,90,0.3);">⬇ Sample AI Report</a>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#5a8a6e;margin-bottom:12px;">Categories</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📊</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Delivery</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🤝</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Stakeholders</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">💡</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Initiative</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📋</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Documentation</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">👥</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Collaboration</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎯</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Goals</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📈</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Performance</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">💬</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Communication</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🎓</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Learning</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏆</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Recognition</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">⚡</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Leadership</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">⏱️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Time Mgmt</div></div></div>
+        <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="padding:3px 10px;background:#a7f3d0;border-radius:100px;font-size:10px;font-weight:800;color:#065f46;">GREEN</div>
+            <div style="font-size:12px;font-weight:700;color:#0f172a;">AI Report Summary</div>
+          </div>
+          <div style="font-size:12px;color:#3d6b56;line-height:1.6;font-style:italic;">"High-performing analyst stepping up to lead client comms independently. Strong delivery across three mandates with capacity concerns flagged for Q2."</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:18px;font-weight:700;color:#3d6b56;margin-top:40px;font-family:'Nunito',sans-serif;" class="reveal">56 industry packs available · new packs added weekly · <a href="https://app.perfember.com/register" style="color:#0A7A5A;font-weight:800;text-decoration:none;">Start free →</a></p>
+  </div>
+</section>
+
+
+<!-- BONUS PACKS ROW -->
+<section style="background:white;padding:0 28px 80px;">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+
+      <!-- Astronaut -->
+      <div class="reveal" style="background:#f0faf5;border:1.5px solid rgba(10,122,90,0.2);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,0.05);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+          <div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;font-family:'Nunito',sans-serif;">🚀 Astronaut Pack</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:#0f172a;">Commander Alex Reeves</div>
+            <div style="font-size:13px;color:#5a8a6e;margin-top:2px;">Mission Specialist · ISS Expedition 72</div>
+          </div>
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoYW5vbnltb3VzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwMzEyMTgxNTQ2KzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwMzEyMTgxNTQ2KzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKHVuc3BlY2lmaWVkKSAvVGl0bGUgKHVudGl0bGVkKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0NvdW50IDEgL0tpZHMgWyA0IDAgUiBdIC9UeXBlIC9QYWdlcwo+PgplbmRvYmoKOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MzYxCj4+CnN0cmVhbQpHYXUwRmhmSVNdJlVyPj1KWDpLNDo0YSokXmBSaSNATzonNlNZV1xAOk9TcF5jbEhVO0dwLkkhZVxBZz81W10vbDhYMi91U1hFVVo2bldYIV1BTiUuJjFrX0tfWXE3KjFcU15EcW87S2EkLUI+Z1FyJSVtbFNuMXFxTFdAKi9PZExjLlAkYmxgY0VfSS0ub1Q8KSI7OjY5NCRbamBIODVtLzlTY3NWNz4kPDlucUwlcklSXT5eMT1tPlY6J1YlRSxUJnJYQy5ZTSRkI2ZUOT1EU0hSR3RkKCZhQkIzPmd1cUc5T29HJjc6RGZkNEIjQ1IsKzptTFNAJy4+PHFFPmsuamxpVFY7UHBROEpcLmgzTDtWWyxTXkMtN1JbRi8/WUpZdDwkYGBjImpeXmNhPScrbzVtKXEjUitKXUAwbEtqUCpjKyUzPEk7IV9ZZUk1dCUlQDxqJE4qalhdVXQrcF1dV1smbjNaQFEjNnVaIkU1ODM7PDVoOidVXmtyblE3MWpPSzxcL3VdSV5vVllOZUciJVJ1WzI7J2xiXzVpVV0lViUqdTtGQW45bCtDOV1NXypRUSJfODJdazRrUC9FLnJvVDg5ISZ0dCJvYWJZcFNpZjokc1A+WiojdFgkXyNdSTNhc0VjUDxbamImWD9DXUYlXmhRXUZnLUlDO1BqcSkhXzI6LksqLjJwMydhSHEiLiRJPWJEby0/K0VfWU0xaipjQS1WPW4tVEQ/VmsoYCJlcS0nIUQ4T2JJOztSUzFzal5rRi1jIUJBUV4jIj9kcDkhZGhIcXMvMDRcaFgnbUIpM0lZcmUiTVZoN21IZlhLblNpQURqXlpXdT9pOmxdbzUwLSQzISFJZSEidVBpUDhpI1JbVmtlJVFdJ19xcGZwPkw3MkwtMUJTMzFWOi5yaz5qdWhNJVxkJ1haS25KO2VMIiReU05MN081aDs+YF8+YSkya1RVam8/IzU+VkAnZiZPTyNcSTFiITIrOjAiRW5eP3QnbilbSCo5QCtxZEpdNlNyUyNsMypAaG05QjAjSUVZMXFlSjAnYFMnQGM5XU9KPihcViheSVFaLjQvPHVQKj04PiJLaF9tai4yOk08ZFZuVXBSKEE9YnQ5WTY1c11COElIayR0X146PGddOSdNLWY0LypgO1wmY3EwJGZTdUJoZnRSWyYwOGk/V1BRSVk7MmJXWDRRMCVHWVQ/VWNAQWhlUStEKThSXTM6YmkkMS1qSVwuNklzayMhVzdRPyY4UVc7NTRPUkQoMyt1KUdIZmQxRSVQbUBScTNvKVVeUlxPPHEmL2wyaS5UQy4mMj4/NUMoJSlCTEBSO1B1IjAnLDcrcFE0XyksRVpzQ1REM2tPbydASz81JCVvMUhDTCxKOW5nOSVvOFdTWy8rWCRwOFpxbXI3OjY2TUs1NF9kSWc7aHFWVDJZTFQzU0BEczc0XGlGJjcsWTwyJy41RnJUYDUjUmxCXWlqbjdxSElmQDNkNnNXODIiaDNdIUViMjorODZvYzEhbSprSlFybG0zNyRWLkhqPzBXUW09VEZjQiNxQ2BuWFU3bzReXl9APGEnJkg8aWlHTGtwWWlkJGVVdGsrSmIiLiclVUQoXFQ8LTExJUokTSpXYEdGLF5HMVttMVtRRjZeI1JORidtPHEoOk1oKV1OY0paMU10ZWttVVUkVVpKbEQhQSNXPFEuYmQvOyJnPztkWFU0amxsS1heWCNBJl0ncEJORHQiQm05WTYqVCk1QEUsPlFiKSI8LT5pczxWS2hzO2U/JSRWOF8obzZEWmI8OVA2VUpwaTQscmpVWSgiLHJqMiYjKSpnal1SRjUqKmtsIysodSpMYVRoQ2M5TGIyWFNuMyxgJXF0UElaKy9NRlw3JyNfdCNfKFU7Z1JUX2ojZCpTQWFPcypVPydWQW1hNm02SGxtKkA8U2c4K2JDIjMzNkBJb0AsWUNmNFlKczNsQ0E+ZCZlZSgrdF4oMW84UzJJT15cTmk6KlY4XVZwZGxUKklHT3BCJVNgSlJKaGhGW18hI2xCRmk7TFBHS0FVcCl0IyFWK1dxSiY2UFRDXTZSZ19HbDdMYzAra1RMMkJSNDQ/a2prT0MpYHFSYzM1czU+SkRwb2BiVFo/I20wQW4xWS43VFlYaEFQO00rXTonKUwpcUVabXEiT0olUCEuUClCdHAqKHRUOklXNig2MEhoLENFPlhMUWAic2o5ZElaKzstPEIhWDFCXUxwYTMsXyhRdE4wNVpeUlNZXCtcc24kNnAqYm0rTV9bWylgV0hSO0ZdLEsraDtbRSoxQ2NWb0taJ0pUVWgzZDd0ZUBRJHQ6cGEvUGBfUkQlayIhTU8yUSo7PDNjPSdcKFRmNjdpMTZTNE8/M191Mj9wV0MuYE9uVmJTWkckTGZEZVgqJDlfUnA2LVY8ImQnJkBvLVVuRlxkYmNbLiVlUyplMWUwKSVbNFA+S2FtP1Y0ZkphSSdFVG9aPEskO0gpRUc+OWApbiZHX2gpJ2M+cD4qTzNacGxxbzVRInNWJGhzUE1vQXJWUGxnNDJlYXUoLWhscC1NR11FLi1eYmlbT3NyYWpSbUJnTzdRX0lVZS84ZzMoYVsiNEk7OHNTMVQzMF9NYzg5Y0BFNmpQJWI2LldGVmVrazpPPV5qRlFFcTVbXkFMPFNaIWc6byJIbiZtdS0oVUl0RWpTLTVnLmNmNlg1JVcvUSRZRTFqOTglT1c+IkQiPU5WVGFVXG4xUlM7ZzhqN0VBJTQ7YCxUQCY+aWxwWTRCWFIkQTU9PjczbWxuLGVPX15LSmltIlxQSkE1JyVUaVxLQ25NL2JaYmE3I0Utb1Zvbic4UjZSRj4yVTQjSl1PTTU6MmdGOmtbK2AwWjZJOktVbCE9PFJaJzRXXmA6N15ca2ZQUythZlJNKyVaOyVZXlhASiZiMSNwUiIqbCNBUFMqXnRFVE5JbSRdMEc1RzA5PU81V24ibiFTWS80JlosPicjRDBKNkRmKnUsWlY7IW5xMF4hKGk3dWUlQylCNjFeMGRMJSpNK0FdT2ldNjlvJ2JkJHRLS11ZZEMqNihTaW4kZy8sVkxZTjJIb3IqI3ViWitRJCdCPTVTPS1UOlFhZCpkXmFjWmB1cWFqWCEyNTBmYytbQ1QxXjhPa3RkY11xQi4+XyYmTywqRV1bLi47cTZcY01ddTIxZzk8ZC87W2IsOiVON29ialtcLio2VWJMMmU/dSQlUiQqc24rcCpxIStDOWhWNjpmXWxgT25XOkhFZDgkP1M9cW4ySj1jTlE9I2JAbmZtWlE2ZiRbNSpdbFNwZUNiX2s2UyxpYDREb0FPKCZASVIqQSEsUUlGSSduTE5dNUFmWDVHZUNkMVpoRGpXVzghVENEX24rI0hQIkhvTzk9MGJwPSYsXGNTRUhzYEojXG9NSS1CVlYsZipQR0pDYFdYIzhfbm9tPCJaPyohXlReUCI+dVNSTCheNklcSTF0cWxnJy1eWHIhMWEuZDNqRk5MK2EpaFs8PU49T3JhdF1wWjxAQl5dYWAzKyxbVzRmNzpSaUA/J0hhTUw6bj0qUSw/NEQnLmVTOzdIXS10NihvPys+TlYiPXEiJ28vYFFQPWBUZGFVdCRTNVYyQmYiPCJaQCVuM01BUEdUQlxeI2VIbTQmTS9nZl4hVUssSDphaHJhUTBBSj9dY2FJbTY8WWMtL0tjZGEzU3NjKSlnQnNNcVFqW09UaShJJF9rYEpPX1pNZmhNcjVXbUg9Yi9AYnFRLTtXZFlOaCtlMVJoZFApXEpoXE9gV1g7YGMvSXA3Pk46IzkoVipYbC8/Zj1bSi5bUl9eNityZF4xVjtOLSd1bSJ0RkJuVXJfXGVnKV41a0VBTjs2aFEoNVdERVtec25UOSJAXVMpRiNEL0xmR11bOTRUZHFXWCkyK05cRm9zUCpAKTxdbkdccyFhZlU2SFBLKmImaktDXEgzJFVJL2o6Ii1wUUVoaEhUQTcoQV9nYkUpZm9DT2hSMDpfRFVAaD4qUW9SJm0hMDAhWlVhTyguPVhzNDFAcEpvX0tDTVhBNElKVlE6MF9GPGNFWVBQOU1APDtnYTBHU2xQMXQ2XWBvWGEyIWouW05kJis0Mk1XPSxFK1U/VWFIRnJvbzwvJFs4L01xOzNbWUxnTkRDXDpPYlwxLC9WZlBzKSRPXjwyO0IraHU3VGZtX29LLmU8aC09Q28mJF1mallKaV01YmBXYy1CIyZTa3RkPSl0bXVYUTJXKywmOjspVGZKQXQpYktwX25iQCdKI2MwWWQvQTglaUgyMFZgWmk0X05OLysqX1AnQ2BAKidRNyJIZCNFQ1k5TzZzMltoSChFLDJzMGZUPl4rcSUqPWVPYVlCcWA4c18jI05jPkBzTGtAQ1UiSG51bEZAKUAmKSFnZSlBcjM+XGEyV2NYYCJBVyFSWDdXaHA6VkdjZCdENyZZTyZvTDRaMStzTm48LUhnXERgKitkP24kJyZrI2IrVilAO3JJcTcySEIyVVY4dDZTTVwuQ1pGRWcvJ11AMkRfIkVeZXMlIyIwSTVPcTdrLCQjcE1Ha3RmX0BgOVdLciNPLlpnIz9fYjsucilyaHFzLFBiNl9HKERIMjA9QyxQUW9KL29jOyRaQW4rPDQ3a2UtblRPLS5pP09oUSsrK0A9Q2ApUVRvXGtnSTEmVk0iW1U+Sy5JOGA1cWQ5YmBXWmZ0WFA8OyM6Oy9gIzlmREtxJHNfTSY+dF81P0puXTE1Vjg/X2cxQWY7I1wmaFRPTy5kQU1EQlg1XloxO0doTUNJUEVoTk9JaztPWSs8X3BUY2chU20mX05MTDJNb21oOTonK2xvbDhuWmY+SFtnIkVZZShocGheKWUxT1IzJ1BCIz9udVVIcEZlby4xMXBGXXJmNEQyQUJdXkgocEBENzI5KCpVSSxzNFYxcytAPFxpVDlxQUhgK11tS1JLUU8nUVBXTE9kXWdsLjY+QjJFS11pNC1BRVtbbl1GNDApa0dpKjpDUkpHMidoUyomajg3RDg4OS1Kb0tsbnJmQTpObDxNVScvVWxGLnFdXmM4SUxESyIlLVhyOFg8UilgJENaOj1mJG5lb0ZqbSZLWE0tWD1LXElrU0VSaT9hMzFJZU9jbixbTj11NWVwU0BxPz5dKj5GN2VkWGxnMzghQnVYQys2O1hEazUqaEpGPj5rOjpAaEYpdGhwbF9qXjsnOGgvYmYjKyJYUD8+clkhXi0nczJrJiIyXSQmZ2xqQzxEaHBESlVjWlhcVVtgLltwTWdwVm03PXUyZVc/VSNdLnFPWUJMOGYtYWctVTJsNkRVYzheMllKLGYpaz11Nk8lbkxgR08qOmZzNltuLGxeKV4jYmksTClfW3JTPkJmU3ErR0JXMHVnaDpsYjlkbFBVMmkpQT1TVWNrVVQ0W1c5NkxPOHBBWCZhc1o1Ni1LY2kuKj44UUc5PWxYOjxZNWpKLDgscDVhaUcuKF8vM2VXISdSKFBhXT81WkQ+OCJndWk9YHE6c2ZQPSxRaEZzIj1kXjk+PmwqVVpHSUJpTytvZVMtYE43NUpeb0M5SCkoRm4mMVE6WU89SDMnalouODZsSGc9bygzIzpFVHA3c249P2YycEFvZS5VT1ghT2okJSpOZlUqMzQrYTZdZDZuN3A4XnEiP0o5YFFwOEYwUytKYiFzJnIscmRcZ2lXRExtWj86VShhQDo2OTg0TypbPXRmIlMyaFtuNDsjQGhLbjVpajVZLGo1NnRpZyRUOUVqTk9qITM+VzssQmdVbkBicEZlRDBNdU5oZHEsTlt+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MjQgMDAwMDAgbiAKMDAwMDAwMDU5MiAwMDAwMCBuIAowMDAwMDAwODUzIDAwMDAwIG4gCjAwMDAwMDA5MTIgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8MGM5NmM0MTk4YTkwOTIzZTc3Yzc4ZjMyMjk5NDBiYzY+PDBjOTZjNDE5OGE5MDkyM2U3N2M3OGYzMjI5OTQwYmM2Pl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgo1MzY0CiUlRU9GCg==" download="Perfember_Sample_Astronaut.pdf" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0A7A5A,#065f46);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(10,122,90,0.3);">⬇ Sample AI Report</a>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#5a8a6e;margin-bottom:12px;">Categories</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🚀</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">EVA Operations</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🔬</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Science Payload</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🛰️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Systems Mgmt</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">👨‍✈️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Crew Leadership</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🆘</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Emergency Response</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📡</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Comms & Downlink</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏋️</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Physical Fitness</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">😴</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Sleep & Recovery</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🔧</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Equipment Maintenance</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">📋</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Mission Logs</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🌍</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Earth Obs</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#f8fafc;border:1px solid rgba(10,122,90,0.1);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#f0faf5;border-radius:50%;display:flex;align-items:center;justify-content:center;">🤝</div><div style="font-size:10px;font-weight:600;color:#3d6b56;text-align:center;line-height:1.3;">Ground Coordination</div></div></div>
+        <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><div style="padding:3px 10px;background:#a7f3d0;border-radius:100px;font-size:10px;font-weight:800;color:#065f46;">GREEN</div><div style="font-size:12px;font-weight:700;color:#0f172a;">AI Report Summary</div></div>
+          <div style="font-size:12px;color:#3d6b56;line-height:1.6;font-style:italic;">"Exceptional mission performance across EVA operations, scientific payload and crew leadership under sustained high-pressure conditions."</div>
+        </div>
+      </div>
+
+      <!-- Job of the Week: F1 Team Manager -->
+      <div class="reveal" style="background:#faf5ff;border:2px solid rgba(124,58,237,0.25);border-radius:20px;padding:28px;box-shadow:0 2px 16px rgba(124,58,237,0.08);position:relative;overflow:hidden;">
+        <!-- Job of the Week badge -->
+        <div style="position:absolute;top:20px;right:20px;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:white;padding:5px 14px;border-radius:100px;font-size:11px;font-weight:800;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(124,58,237,0.35);">⭐ Job of the Week · w/c Mon 16 Mar</div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;gap:12px;">
+          <div>
+            <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px;font-family:'Nunito',sans-serif;">🏎️ F1 Team Manager Pack</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:#0f172a;">James Hartwell</div>
+            <div style="font-size:13px;color:#6d28d9;margin-top:2px;">Team Manager · Apex Racing F1</div>
+          </div>
+          <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoYW5vbnltb3VzKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwMzEyMTgxNTQ2KzAwJzAwJykgL0NyZWF0b3IgKGFub255bW91cykgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwMzEyMTgxNTQ2KzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKHVuc3BlY2lmaWVkKSAvVGl0bGUgKHVudGl0bGVkKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0NvdW50IDEgL0tpZHMgWyA0IDAgUiBdIC9UeXBlIC9QYWdlcwo+PgplbmRvYmoKOCAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCA0MzU3Cj4+CnN0cmVhbQpHYXUwRj8kRyk0JlVpOTdeZTklLlpwb20qSWNPNENqT0MvbVw/XGpPSE1Uc0orWUAzbEVfR2goZEQsLFIjUm1xQC5DKWBccV0qZW4tM2w+WlI2LSQlIlk5KEhwY2xBIkEpQ1JzXlYoNFE4OVQtbktdXF8vXWpoaltCM2EmYlg6NCxlPG5baSEpcWVtZTI7T2pAblMyYmY/RTEjO1ZEMCg6UHRdXHI5N21JI11EOlRKYjxlJ2ExMSNhZjlFNC5CXyRdVjBXZyk6cFZJSCNOOy8hK2M4XklJOWpKIkBpQEE5XUYsdGRvcmsoUEZWKiYxOGIuK1hyIz1Nc0k5V1AsQmg8SiI6UCteJ3Q3LjR1UlA4TGQtJDk4WjJQMyZBb01sV1BSWCNbVSYlYXM5JWw7JDJWSD1POzAyWiFeQGoqYzQrMjxIa2w4RjF1TTZVOGcodS5lJ3A5aUkqIk9vdFxEVGpKPWIpJVpYQlJpLnJbPGwnZE85YlQxTCwvNWFNNiNAajtrIkJnQnE/OG5fJSovbDtuVTw0R3FKXXRxQmFyTUosakpGPWU2XDVOUUs7NTxTSzsxUyRIRjNMZD02KmFoOGBPOXBgMzUmSSpdbUk9ZlEodW1pIUFFU05gXj1jUCkoL15rRDg5KXA9UjFnQzI3aFU/aylfJ2JUM2JnTilIJ3IsRU9vRjZGaF5uUUZTSGM6LldrV0dBdSVnR0Fzbzo4V1BkJXBhUzY/KD5xLixsLkg6Wj1hS2RVXC4lXis+UWdjNkouI2psOmMsaGQlRDE+dTVKPVBUTlNSam9sLUpfXT0qRjcyR2ZNT0FtNm9wVGFDRCdvJTIramBgWHMkbjhYUWU5X3JAU1BCWlxGKSZKUzphVmJPZWovQSY4Ll5TImtEOTBUXk0oMmUsazpUWzFFJmYmN3E+QmRab1ZyJDo4cysjJUBPNnNzNG0taj5LXlUoZ3NDODo6YSNsLW5JT3BZY1FENWxqPzdTKC5zbT10U2hEVkpBV0A9ODpUcTlKdVowJipQZGhRZDtuJiJlNCtGcnViW01zST1BaUtcW3JCbUIlIjdFR0EqaGZldCQqUzpWQi9rN20vSHNEc0FZQTMvdVkuMFhOWi9FJD0+XmFmcC5IIy9KNTRQS2FpKDpSYUpQLDJvcSk8Zi0+PEI2Pk1qSnAuVmV1cVtycTJ0RD1RaF5NKlw7aTZTby1wZEsuLTZoRTJLRHQ3TjVtUTYoU3BYXFYpK2RPQyhRMyRxIlklbm46WE9PSmlObkpAZUc4JFVvUzxNMCxeSW0wLHBMXF5JL2g4TTRTcls7ZWpYb2EwbEdTcUtDb2lsOUstYjIvcU0rUicxPS5WLVhzUkxWPW5jJidsNGBAJkJXb19OWkYmYj4tTyVWT09SO01cblgrK2FtSl4nKUEtczE1XiZKK250L1NtVDIwcTFuIkQ2dFdxXFBjZHAmX1dlTkJbMkEhPUh0IiM5W0IlKGNFYCdVWlcnVj9SPSVGcjNTUkZpNVklbSFDKzJ0OF5NM108WSlabDNuWD1YOUFNXylgZmBLX1xoS3Emcz5fKz1rdVx0Z2liX2NgdE9qMyorPERrY18oIjpaSiY1YyFWKjYsPUomOUdYOHMuVy9mcFxpalQ6PXJfQWRqK28jS0FFQSE/aylWMypBUGE9XGYubzMwRHBTXD8pMSRSSm5UMkVzJmZbXFosS2ckcUJGPXNzLXNBcEBgYCQ8XmxVT1ImYjd1PWdwSUhiKl9LYGc4cEBII1NYclAhc0hVZT1NSUUpUUhZM1whS3FdMElhQnEvaEU/WCNHVm0rKz4vP1ZmN1lCZnAzNTFNPzFSNGwuMCZibDI0ZF9uSTUlJS5gJWNsNiMxNWRLOWZtVSEjYmxUPjcwPzpRJDEoaDZUMm0oP1E+TiVvMyU1XCR1OC1dRy0kOlNHMCsjR1BLP24ydFhnbDlfUTVWSVI5VVhOOCZlR0psNk40bVEmI3NrUnJmTl51ZEBqWiomcz5ZSV9sZ2M5LkQqLkRcbG1PWWk+KXEmZj0lSTM/ZjZhTmhEP0RhL09Ha0crbEdNTWM2dD1BIzNQOUkmc2ptOz9rJmlTaiVxWmE8LnQyaSVwPUQyLVJIJ1RkTSYpS1s5ZU9HSmpMY2pKWCYzUVZnZClpMWdMOW5qdD5NTlRfP1hJJDJtLj9IImRNKmNlJE1SXjAkNyhUXyMnS3FdcT9OY3AnZi5DXzFsczpgVyJGNlJeMjlPP2VIWCwrUTprXDxDKFckdENLS2tZWTIzKXNJZS9JKEJVRWNzNz9ORU5RJkVeIVA9RitgISUvTkJBPDJXOkcpP1o2TGpKN0c4I1ZhRCZkdEc4Li5IJGRHaDInRyRPOkhxYzhRV2I1QCNEayMkcSYoSFNDQylVTCcvTmVYR0I7TkxFJFs7T2BbbyplNmk1P0ZfV2FQTjwrPTpZWCcnWT9DajIsQy5OaWBgJlRkYkkpVThrITtISDMxPVFnaDgoSzZpSWciSzpDJDMvNUY3aWJgVlJxI1opUzsndVQ5bC1BWiZnMipgPzQ5ZlVkUHI0VS9VKC9GckslQjQxQC8vIjJXYHVTYl9IUjpMWFs1PycxPTJIImAyJVgzYDpuU25fUE5mKW5sKjdqK1JlI1NBR0dRamQtS2IockVbLDAxKyhwKjwtYz5aSEwhKDVrYCcqOWpHdUZjXl1TZzwyMlVYbTRdJkB0QWJrXnQkXiwwLiUtLkVvYEVKLClxRT9VXyw9UklCREY/Wm9MLTVyXmlKcEJOZGNqSks6VWdNKTclYVdePCMuMUVxb1g3WUVQOkxfLUNHOFBWZl01OWdUYkYzKFVvOWJKTCE1NSFHNiZyKT0xVS1lblInYVs2XklhVGZmRlo3Jio3IkswYCcrLDI7UXNoKj1AJDk/U3JSUy09QiJOJ04+b2ZCIz9ITmNWLVs0OVZtaEhiRFdVND9yclZFKmtddVNtUmQwNUU6VyMkW1twM1Eja2JuaCVIX0gnNlxYa01oUTE5Nz9CQEwrZ14qKD9Tcz1cRDwqJlZPJFxQR0FUbmxYX1dAV1ohJT5jOT1oOkJzb0ZpLTxpLEkpLCRkJzhGbjdvZUBxOUUkIVBwVXJWT18oP1BqVGgjNFk/YzY8LklEUFloVG0pLSU1OyQqVy4zX04uWTA2O0MtVD8jb0RxK2lmWy5JYGI0MGxZdHVcM24vN1g6ViwsITE4XV5PTjA5ZC5CMVVBbVVDNUxtYUtdLE1PcmdfaHAiJ1QiS2FTaD4kKjE3IyhUSyRsIVJWN3Jdc2xJa2VJayNsXTpKb2JsMzpYaCUpTGBjQl1ZN0peO21gKXBNNzMiNUk5MilIS2AhIlQhXnE4XTAyVjU0aDxVZkZZMWRKTUslMjlmLHVETl8wUzQ7P2YiWydvM3QoVzBTcUAwVlRCWkJATCFKSz1VJUFBQjhoV20vcjVaJywsaDNaMFtwTnVWRCc4JUQ2QXJcWnNILkBgaDk1bTIqb1ppSTRyWVlFRVZLKUdOM08pbiwoQk4vRGouMF5LbD1MQjpyVjhLZkdmYyE5Sy5PVFRvLmByME9gVzZIRFknUEZAdWhjWihfQWo/ZmdtLDdJXnA/JjVTbSs9Jj1uTHVqOiVaJz1yWkhBMlBDRWwqWERrKEY8dTklJkA+LWJhbXVcajRJZj8oLnJmKFU9QUFOckQiaTxhcUtAZ15OckU/JGpuOFFGTEBtMGhgbDFmWVxlLz5aMjRpcjsqWS9bPHAzczYpJEg2NU09OGBpRnFdQ1k6cjUoYGpjPzRkUUYtdDMzS0tURUZSaFs6TmRTISVrSF0nOU1WQW4iMkA+US1iampfOD07JFordEA0VFc+KXBDT1lOLCNANzNaMTV0SyFwS0ZuSE9VXlJScUFQPDlASCEtUG9XP2U0bz9QOTQuLCpGWlxIQVhQP1AidENrM01yTl5oKEhFYmUlIiNzTmtNPChnc01zW1RBOD9OMmNEWStlbWpsK0RWMitsUz43P25PXTchaUM4P05YJFttXGlIUDMxayNObT9ZPFVFdSdOMi5fWixYdGZQOEouLEonT19rTiZPb19lZFBFMDRPSEM3QTNvakRJLXFPcT1URDdeSVMrIls0LkhDLVhgSl5tMFF0WkVpaDhTTCFaVyVOX15FbSZBXTVkMDVRJEkjWTY5JSNNKzVLYXJGODYnbD9BIzk1PFJ1JStKJGtoLyFISWkwYnFEViRJaWdYb0NWKVY5a19zbnVaYltPRFtYQmo1SFY9VWppNjlUYT5jNUdWQlhfdGZscV5MQV07WmtsRXVlOTVobXJFV2dfKHA9YnE1I3NMVCQ7UTc4a04jJjY0TkxiJTNtcG1OQEhqSkt1TmVZKlgtYC1yRlcxUmcibkw7UFNDbnEwRVhwXDBGLyVYOWslYm08XmtdVE9pTy45XEBpUmZZUTxwSUhrcF0+V0JUXmpcal8xMzlDY0wkM1tdPEV0VFdJQGhIUzYkcSlPaVhrZEFIK2xvVlVpQHBzKTs8OVZZLmVhNj08QCZPcTxPaCFeM15iNmcmXS06QStjT0ttVWg8NkYrZW9YdEZpXmdxOzNFISY1NSFQIT9bK1wrLF07Nz1cPHE5UCw9SmUxM1xFKSJJclFBPTNjcCRtIVFBWl9tRW1xOS9xVENNJlM8cVtcKmhicSdTI1lOKDNYP1g4Ii5FOitZL29eNS9LUFlENTxGZiMxJ1ExJDY9bE1pN2FvRlowXkkoTkI3TTdSRjAzLlheOF9RQydvRyZcXyk/MHAoXmxmTFE8XnBac2chNTVkWWRDQD0hQnRcRkQmLDdxM151UVkvW2gtUz5uXlxjcFdmbHQ1JCpwUSJILmZCalgqb0o7Tj1tPXNTNGZDJUFZITxSMC5UNj8sJSVDXztpblo8dUVabkpZV3E8ZUgnY3VAPSFkdE9bbF1CalUmMj5ZWzhNWnJIY1NfXmkuZExKcCxFS2JcakBwXCFJXzJuJ1AoLChdJ1JHRWtPJ0FuNSItRDFWJjopNlRlZDMlQmxuXWk2Q0kyYFo9QC1HNkVuKGEyKT0jIUdQX2dVbk0xKydZTFFXcithcFtrRFhycTNgL1QlYSJOcnRGP2FSTCE3Jk5NNXIsUDJzb0hvXjpSM0JgPjdFJVRwLDAlUjZkWC0rPERtUW43TkFdUVUtPyVFMTojR2JYKiYnPThiPGIzPWFcOU5pdExOaldhJlByJj1scUB0SD9pakpAM2BUKGY5akkqNCxuR2FzWShXJyNScmMqZlZUXGh1L181ZWVOcGxNZ2JQNiImLEljI2dZIjwvQFcrPElEL3JlUDRXX0hYSGU1P2FsXGUwPjxUcV4jNTBtJU9kWEoxbk10U0U8NChWYkozVFA5WnA+L0RtajYjOm06TkVFZi8zZEY8OXRwWVE8VywoPj5PVWVfa21zJCFOV2UyRmAzInI1QixyV0ooMCwlPE0xcG5xU143YU5uaUhncGltQ1NCcipbLGhDaD8yUSk9YG0iUUpxdFhAbmQxZ3MwYzkjPkNlOT1QWWhGcyJNa1dWZFEoViN1YEJRNFopcEwxW1JnKW1sb0dKPCojZGpna15hXjRUUSlXWS1dZnInRGgualVXRUt0ZTFZXCtkSTo1JVFWIjlrSGN0cHRbV1FlZihnIWlCI2MvJyc/b3FEJlYkRTdIJ08vcmtxTXA4SGhHbFVhZmVkIVJSOTcsbjsvUUJzZ3BDLGI1THBfOSEkJGtyTj9XMFNrQjBMLT4oWCc7JSdFKkVWWV1XOjlRNFs7UihPU2hQITtWO0pwIjN0RlBwQTd0b0VIb1kqUH4+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgOQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDEwMiAwMDAwMCBuIAowMDAwMDAwMjA5IDAwMDAwIG4gCjAwMDAwMDAzMjEgMDAwMDAgbiAKMDAwMDAwMDUyNCAwMDAwMCBuIAowMDAwMDAwNTkyIDAwMDAwIG4gCjAwMDAwMDA4NTMgMDAwMDAgbiAKMDAwMDAwMDkxMiAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzwzMmQ2NmQ3ZWE3NjMwZDhlMTlhYmVmZmUzZmQ0Njg4Zj48MzJkNjZkN2VhNzYzMGQ4ZTE5YWJlZmZlM2ZkNDY4OGY+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDYgMCBSCi9Sb290IDUgMCBSCi9TaXplIDkKPj4Kc3RhcnR4cmVmCjUzNjAKJSVFT0YK" download="Perfember_Sample_F1Manager.pdf" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;margin-top:28px;box-shadow:0 2px 8px rgba(124,58,237,0.35);">⬇ Sample AI Report</a>
+        </div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#6d28d9;margin-bottom:12px;">Categories</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;"><div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏎️</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Pit Stop Execution</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">🧠</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Race Strategy</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">👥</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Driver Mgmt</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">💰</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Cost Cap Compliance</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">✈️</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Logistics & Freight</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">🔧</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Technical Decisions</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">📊</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Data Analysis</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">😤</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Crew Fatigue Mgmt</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">📢</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Media & PR</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">🤝</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Sponsor Relations</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">⚖️</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Regulations</div></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px;background:#faf5ff;border:1px solid rgba(124,58,237,0.12);border-radius:10px;"><div style="font-size:20px;width:38px;height:38px;background:#ede9fe;border-radius:50%;display:flex;align-items:center;justify-content:center;">🏆</div><div style="font-size:10px;font-weight:600;color:#6d28d9;text-align:center;line-height:1.3;">Championship Focus</div></div></div>
+        <div style="background:#ede9fe;border:1px solid #c4b5fd;border-radius:12px;padding:14px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><div style="padding:3px 10px;background:#a7f3d0;border-radius:100px;font-size:10px;font-weight:800;color:#065f46;">GREEN</div><div style="font-size:12px;font-weight:700;color:#0f172a;">AI Report Summary</div></div>
+          <div style="font-size:12px;color:#5b21b6;line-height:1.6;font-style:italic;">"Outstanding strategic leadership across the opening three rounds. Pit stop execution and driver management standout strengths — cost cap compliance requires monitoring."</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -803,78 +1054,99 @@ footer {
 <!-- WHY PERFEMBER -->
 <section style="background: white;">
   <div class="section-inner">
-    <div class="section-label reveal">💡 Why People Use Perfember</div>
+    <div class="section-label reveal" style="color:var(--amber);">💡 Why People Use Perfember</div>
     <h2 class="section-title reveal">Whatever your reason,<br>we've got you covered.</h2>
     <p class="section-desc reveal">Performance tracking means different things to different people. Perfember works for all of them.</p>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px;">
 
-      <div class="hiw-card reveal" style="background: var(--slate-50); border-left: 3px solid var(--emerald-400);">
+      <div class="hiw-card reveal" style="background: white; border-left: 3px solid #10B981;">
         <div style="font-size: 28px; margin-bottom: 12px;">💰</div>
         <h3 style="margin-bottom: 8px;">Going for a pay rise?</h3>
-        <p style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Build an undeniable case. Log every win, every piece of positive feedback, every target hit — so when the conversation comes, you walk in with hard evidence, not vague memories.</p>
+        <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">Build an undeniable case. Log every win, every piece of positive feedback, every target hit — so when the conversation comes, you walk in with hard evidence, not vague memories.</p>
       </div>
 
-      <div class="hiw-card reveal" style="background: var(--slate-50); border-left: 3px solid var(--emerald-400);">
+      <div class="hiw-card reveal" style="background: white; border-left: 3px solid #F59E0B;">
         <div style="font-size: 28px; margin-bottom: 12px;">🚀</div>
         <h3 style="margin-bottom: 8px;">Gunning for a promotion?</h3>
-        <p style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Show your growth over time, not just a snapshot. A running record of your contributions, skills developed, and problems solved makes a far more compelling promotion case than a rushed summary.</p>
+        <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">Show your growth over time, not just a snapshot. A running record of your contributions, skills developed, and problems solved makes a far more compelling promotion case than a rushed summary.</p>
       </div>
 
-      <div class="hiw-card reveal" style="background: var(--slate-50); border-left: 3px solid var(--emerald-400);">
+      <div class="hiw-card reveal" style="background: white; border-left: 3px solid #EF4444;">
         <div style="font-size: 28px; margin-bottom: 12px;">⚠️</div>
         <h3 style="margin-bottom: 8px;">Managing a difficult employee?</h3>
-        <p style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Document issues accurately and fairly as they happen, not weeks later from memory. A clear, timestamped record protects you and gives the employee a fair chance to improve.</p>
+        <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">Document issues accurately and fairly as they happen, not weeks later from memory. A clear, timestamped record protects you and gives the employee a fair chance to improve.</p>
       </div>
 
-      <div class="hiw-card reveal" style="background: var(--slate-50); border-left: 3px solid var(--emerald-400);">
-        <div style="font-size: 28px; margin-bottom: 12px;">🙌</div>
-        <h3 style="margin-bottom: 8px;">Got someone too modest to shout about their work?</h3>
-        <p style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Some of your best people will never talk themselves up. Log their achievements for them and make sure their good work doesn't go unnoticed when it matters most.</p>
+      <div class="hiw-card reveal" style="background: white; border-left: 3px solid #10B981;">
+        <div style="font-size: 28px; margin-bottom: 12px;">🆕</div>
+        <h3 style="margin-bottom: 8px;">Starting a new job or role?</h3>
+        <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">The first 90 days matter most. Log your early wins, the problems you solve, and the relationships you build. When your probation review comes, you'll have a ready-made case for why you're exactly what they hired.</p>
       </div>
 
-      <div class="hiw-card reveal" style="background: var(--slate-50); border-left: 3px solid var(--emerald-400);">
-        <div style="font-size: 28px; margin-bottom: 12px;">📋</div>
-        <h3 style="margin-bottom: 8px;">Just want to stay on top of things?</h3>
-        <p style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">No big agenda — just better habits. A quick daily or weekly log means you always know where you and your team stand. No more scrambling before reviews.</p>
+      <div class="hiw-card reveal" style="background: white; border-left: 3px solid #F59E0B;">
+        <div style="font-size: 28px; margin-bottom: 12px;">💼</div>
+        <h3 style="margin-bottom: 8px;">Changing jobs and need a strong CV?</h3>
+        <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">Your logs become your career portfolio. Concrete achievements, real metrics, and outcomes you can be proud of — ready to pull into any application, LinkedIn update, or interview at a moment's notice.</p>
       </div>
 
-      <div class="hiw-card reveal" style="background: var(--slate-50); border-left: 3px solid var(--emerald-400);">
+      <div class="hiw-card reveal" style="background: white; border-left: 3px solid #EF4444;">
         <div style="font-size: 28px; margin-bottom: 12px;">🎯</div>
         <h3 style="margin-bottom: 8px;">Tracking progress against goals?</h3>
-        <p style="font-size: 14px; color: var(--slate-500); line-height: 1.6;">Set goals once and log against them as you go. See clearly who is on track and who isn't — and generate reports that show real progress, not guesswork.</p>
+        <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">Set goals once and log against them as you go. See clearly who is on track and who isn't — and generate reports that show real progress, not guesswork.</p>
       </div>
 
     </div>
+
+    <!-- Senior Leaders row -->
+    <div style="margin-top: 16px; padding-top: 32px; border-top: 1.5px solid rgba(10,122,90,0.12);">
+      <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: #0A7A5A; margin-bottom: 20px;">🏢 For Senior Leaders</div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+
+        <div class="hiw-card reveal" style="background: white; border-left: 3px solid #0A7A5A;">
+          <div style="font-size: 28px; margin-bottom: 12px;">📊</div>
+          <h3 style="margin-bottom: 8px;">Building a case for headcount?</h3>
+          <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">When budget season comes, gut feel isn't enough. A documented record of team output, capacity constraints, and delivery across quarters gives you the hard evidence to justify your next hire — before anyone challenges it.</p>
+        </div>
+
+        <div class="hiw-card reveal" style="background: white; border-left: 3px solid #0A7A5A;">
+          <div style="font-size: 28px; margin-bottom: 12px;">🏛️</div>
+          <h3 style="margin-bottom: 8px;">Reporting up to the board or exec team?</h3>
+          <p style="font-size: 14px; color: #3d6b56; line-height: 1.6;">Turn months of team activity into a polished executive summary in minutes. Know exactly what your team delivered, where they excelled, and where investment is needed — so you walk into every senior meeting fully prepared.</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works" id="how">
   <div class="section-inner">
-    <div class="section-label reveal">⚡ How It Works</div>
+    <div class="section-label reveal" style="color:var(--green-dark);">⚡ How It Works</div>
     <h2 class="section-title reveal">Log it fast.<br>Review it brilliantly.</h2>
     <p class="section-desc reveal">Whether you're tracking your own work or managing a team, Perfember saves you hours of admin every review cycle.</p>
     <div class="hiw-grid" style="grid-template-columns: repeat(4, 1fr);">
       <div class="hiw-card reveal">
-        <div class="hiw-step">1</div>
+        <div class="hiw-step" style="background:linear-gradient(135deg,#0A7A5A,#065f46);box-shadow:0 4px 12px rgba(10,122,90,0.3);">1</div>
         <h3>Log your moment</h3>
         <p>Speak or type a quick note — a win, observation, feedback, or challenge. For you or your team. Takes 5 seconds.</p>
         <div class="hiw-time">⏱ ~5 seconds</div>
       </div>
       <div class="hiw-card reveal">
-        <div class="hiw-step">2</div>
+        <div class="hiw-step" style="background:linear-gradient(135deg,#F59E0B,#D97706);box-shadow:0 4px 12px rgba(245,158,11,0.25);">2</div>
         <h3>AI structures it</h3>
         <p>Our AI transcribes, categorises, and polishes your note automatically. No formatting, no effort.</p>
         <div class="hiw-time">🤖 Instant</div>
       </div>
       <div class="hiw-card reveal">
-        <div class="hiw-step">3</div>
+        <div class="hiw-step" style="background:linear-gradient(135deg,#EF4444,#DC2626);box-shadow:0 4px 12px rgba(239,68,68,0.25);">3</div>
         <h3>Build the record</h3>
         <p>Logs stack up into a rich, searchable timeline — for yourself or your whole team. No more digging through old emails, notes and calendars.</p>
         <div class="hiw-time">📊 Always up to date</div>
       </div>
       <div class="hiw-card reveal">
-        <div class="hiw-step">4</div>
+        <div class="hiw-step" style="background:linear-gradient(135deg,#334155,#1e293b);box-shadow:0 4px 12px rgba(51,65,85,0.25);">4</div>
         <h3>AI puts it together</h3>
         <p>Need a review or report? AI compiles months of logs into a polished document in minutes. Export to PDF or Word and you're done.</p>
         <div class="hiw-time">📄 Minutes, not hours</div>
@@ -886,44 +1158,44 @@ footer {
 <!-- FEATURES -->
 <section id="features">
   <div class="section-inner">
-    <div class="section-label reveal">✨ Features</div>
+    <div class="section-label reveal" style="color:var(--red);">✨ Features</div>
     <h2 class="section-title reveal">One app. Two powerful<br>perspectives.</h2>
     <p class="section-desc reveal">Track your own performance or manage your whole team — same effortless, AI-first experience either way.</p>
     <div class="features-grid">
       <div class="feature-card reveal">
-        <div class="feature-icon voice">🎙️</div>
+        <div class="feature-icon voice" style="background:#ecfdf5;color:#10B981;">🎙️</div>
         <h3>AI Voice-to-Text Logging</h3>
         <p>Speak naturally about what happened. Perfember transcribes and auto-fills the log type, category, title, and description. Works whether you're logging for yourself or your team.</p>
-        <div class="feature-tag">AI Powered</div>
+        <div class="feature-tag" style="background:#ecfdf5;color:#059669;border-color:#a7f3d0;">AI Powered</div>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon manager">👥</div>
+        <div class="feature-icon manager" style="background:#fffbeb;color:#D97706;">👥</div>
         <h3>Manager Team Dashboard</h3>
         <p>Log observations about your direct reports, track team activity, and get a full performance picture — all in the same voice-first interface you use for yourself.</p>
-        <div class="feature-tag">Manager Tier</div>
+        <div class="feature-tag" style="background:#fffbeb;color:#D97706;border-color:#fde68a;">Manager Tier</div>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon review">📝</div>
+        <div class="feature-icon review" style="background:#fef2f2;color:#DC2626;">📝</div>
         <h3>AI Review Generation</h3>
         <p>Generate polished self-reviews or team performance reports with one tap. Choose the period, set the tone, and export to PDF or Word in seconds.</p>
-        <div class="feature-tag">Pro Feature</div>
+        <div class="feature-tag" style="background:#fef2f2;color:#DC2626;border-color:#fecaca;">Pro Feature</div>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon dashboard">📊</div>
+        <div class="feature-icon dashboard" style="background:#ecfdf5;color:#10B981;">📊</div>
         <h3>Performance Dashboard</h3>
         <p>Interactive charts showing logging activity, category breakdown, and goals progress — for yourself or your whole team. Always up to date.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon goals">🎯</div>
+        <div class="feature-icon goals" style="background:#fffbeb;color:#D97706;">🎯</div>
         <h3>Smart Goals</h3>
         <p>Paste goals from any source and AI structures them for you. Track personal progress or set goals for team members. Review-ready from day one.</p>
-        <div class="feature-tag">AI Powered</div>
+        <div class="feature-tag" style="background:#ecfdf5;color:#059669;border-color:#a7f3d0;">AI Powered</div>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon ai">🤖</div>
+        <div class="feature-icon ai" style="background:#fef2f2;color:#DC2626;">🤖</div>
         <h3>Smart Auto-Categorization</h3>
         <p>AI detects whether it's a win, feedback, challenge, or learning — and assigns the right category automatically. You just confirm and save.</p>
-        <div class="feature-tag">AI Powered</div>
+        <div class="feature-tag" style="background:#ecfdf5;color:#059669;border-color:#a7f3d0;">AI Powered</div>
       </div>
     </div>
   </div>
@@ -941,7 +1213,7 @@ footer {
 
       <!-- SELF-TRACKING COLUMN -->
       <div>
-        <div style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--slate-400); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; text-align: center;">🏆 Tracking yourself</div>
+        <div style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: #34D399; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; text-align: center;">🏆 Tracking yourself</div>
         <div style="display: flex; flex-direction: column; gap: 16px;">
 
           <div class="price-card reveal" style="margin: 0;">
@@ -980,7 +1252,7 @@ footer {
 
       <!-- MANAGER COLUMN -->
       <div>
-        <div style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--slate-400); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; text-align: center;">👔 Managing a team</div>
+        <div style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: #FBBF24; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; text-align: center;">👔 Managing a team</div>
         <div style="display: flex; flex-direction: column; gap: 16px;">
 
           <div class="price-card reveal" style="margin: 0;">
@@ -1017,59 +1289,59 @@ footer {
       </div>
 
     </div>
-    <p style="font-size: 13px; color: var(--slate-400); margin-top: 24px;" class="reveal">All plans include a free forever tier. No credit card required to get started.</p>
+    <p style="font-size: 13px; color: #5a8a6e; margin-top: 24px;" class="reveal">All plans include a free forever tier. No credit card required to get started.</p>
 
     <!-- Enterprise teaser -->
     <div class="reveal" style="margin-top: 32px; background: linear-gradient(135deg, var(--slate-900), var(--slate-950)); border-radius: 20px; padding: 40px 48px; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
       <div style="flex: 1; min-width: 260px;">
-        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--emerald-400); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">🏢 Enterprise</div>
-        <div style="font-family: var(--font-display); font-size: 26px; font-weight: 800; color: white; letter-spacing: -0.5px; margin-bottom: 10px;">Perfember Enterprise</div>
-        <p style="font-size: 15px; color: var(--slate-400); line-height: 1.6; max-width: 480px;">Organisation-wide performance management at scale. Built for HR teams, large departments, and multi-site businesses that need more control, more oversight, and deeper integrations.</p>
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: #FBBF24; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">🏢 Enterprise</div>
+        <div style="font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #f1f5f9; letter-spacing: -0.5px; margin-bottom: 10px;">Perfember Enterprise</div>
+        <p style="font-size: 15px; color: #5a8a6e; line-height: 1.6; max-width: 480px;">Organisation-wide performance management at scale. Built for HR teams, large departments, and multi-site businesses that need more control, more oversight, and deeper integrations.</p>
       </div>
       <div style="flex: 1; min-width: 260px;">
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🏢</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Multi-department structure</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Org-wide hierarchies, departments, and role-based access control.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">Multi-department structure</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Org-wide hierarchies, departments, and role-based access control.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🔗</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">HR system integrations</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Connect with existing HR, payroll, and appraisal platforms.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">HR system integrations</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Connect with existing HR, payroll, and appraisal platforms.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">📊</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Advanced analytics</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Organisation-wide performance trends, benchmarking, and reporting dashboards.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">Advanced analytics</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Organisation-wide performance trends, benchmarking, and reporting dashboards.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🔒</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">SSO & compliance</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Single sign-on, audit logs, data residency, and enterprise-grade security.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">SSO & compliance</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Single sign-on, audit logs, data residency, and enterprise-grade security.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🎯</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Org-wide goal alignment</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Cascade company objectives down to teams and individuals automatically.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">Org-wide goal alignment</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Cascade company objectives down to teams and individuals automatically.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🌐</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Custom branding & API</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">White-label options and API access for custom workflows and integrations.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">Custom branding & API</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">White-label options and API access for custom workflows and integrations.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🏅</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Kudos & recognition</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Send a quick shout-out or thank you to a colleague. Peer-to-peer recognition that gets logged and remembered.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">Kudos & recognition</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Send a quick shout-out or thank you to a colleague. Peer-to-peer recognition that gets logged and remembered.</div>
           </div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px;">
             <div style="font-size: 18px; margin-bottom: 6px;">🎁</div>
-            <div style="font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px;">Gift & reward management</div>
-            <div style="font-size: 12px; color: var(--slate-500); line-height: 1.5;">Reward great work with gift vouchers, free lunches, or custom awards — managed and tracked right inside Perfember.</div>
+            <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px;">Gift & reward management</div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">Reward great work with gift vouchers, free lunches, or custom awards — managed and tracked right inside Perfember.</div>
           </div>
         </div>
-        <a href="/cdn-cgi/l/email-protection#c5acaba3aa85b5a0b7a3a0a8a7a0b7eba6aaa8fab6b0a7afa0a6b1f880abb1a0b7b5b7acb6a0e5a0abb4b0acb7bc" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: linear-gradient(135deg, var(--emerald-500), var(--emerald-600)); color: white; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+        <a href="/cdn-cgi/l/email-protection#c5acaba3aa85b5a0b7a3a0a8a7a0b7eba6aaa8fab6b0a7afa0a6b1f880abb1a0b7b5b7acb6a0e5a0abb4b0acb7bc" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: linear-gradient(135deg, #F59E0B, #D97706); color: white; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
           Discuss pricing & requirements with our sales team →
         </a>
       </div>
@@ -1081,57 +1353,57 @@ footer {
 <!-- STATS -->
 <section style="background: linear-gradient(135deg, var(--slate-900), var(--slate-950)); padding: 80px 28px;">
   <div class="section-inner" style="text-align: center;">
-    <div class="section-label reveal" style="justify-content: center; color: var(--emerald-400);">📊 The Numbers</div>
+    <div class="section-label reveal" style="justify-content: center; color: var(--amber);">📊 The Numbers</div>
     <h2 class="section-title reveal" style="color: white; margin-bottom: 12px;">Stop wasting hours.<br>Start building as you go.</h2>
-    <p style="font-size: 16px; color: var(--slate-400); max-width: 580px; margin: 0 auto 56px; line-height: 1.6;" class="reveal">Without Perfember, most people spend 3–5 hours before every review digging through old emails, calendar entries, Slack messages and notebooks trying to piece together what they actually did. There's a better way.</p>
+    <p style="font-size: 16px; color: #5a8a6e; max-width: 580px; margin: 0 auto 56px; line-height: 1.6;" class="reveal">Without Perfember, most people spend 3–5 hours before every review digging through old emails, calendar entries, Slack messages and notebooks trying to piece together what they actually did. There's a better way.</p>
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px;">
       <div class="reveal" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 20px;">
-        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--emerald-400); letter-spacing: -2px; line-height: 1;">5s</div>
-        <div style="font-size: 14px; color: var(--slate-400); margin-top: 8px; line-height: 1.5;">Average time to log a moment</div>
+        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: #34D399; letter-spacing: -2px; line-height: 1;">5s</div>
+        <div style="font-size: 14px; color: #5a8a6e; margin-top: 8px; line-height: 1.5;">Average time to log a moment</div>
       </div>
       <div class="reveal" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 20px;">
-        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--emerald-400); letter-spacing: -2px; line-height: 1;">4h</div>
-        <div style="font-size: 14px; color: var(--slate-400); margin-top: 8px; line-height: 1.5;">Saved per review cycle vs. doing it manually</div>
+        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: #34D399; letter-spacing: -2px; line-height: 1;">4h</div>
+        <div style="font-size: 14px; color: #5a8a6e; margin-top: 8px; line-height: 1.5;">Saved per review cycle vs. doing it manually</div>
       </div>
       <div class="reveal" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 20px;">
-        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--emerald-400); letter-spacing: -2px; line-height: 1;">3×</div>
-        <div style="font-size: 14px; color: var(--slate-400); margin-top: 8px; line-height: 1.5;">More accurate performance records vs. recall alone</div>
+        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: #34D399; letter-spacing: -2px; line-height: 1;">3×</div>
+        <div style="font-size: 14px; color: #5a8a6e; margin-top: 8px; line-height: 1.5;">More accurate performance records vs. recall alone</div>
       </div>
       <div class="reveal" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px 20px;">
-        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: var(--emerald-400); letter-spacing: -2px; line-height: 1;">10×</div>
-        <div style="font-size: 14px; color: var(--slate-400); margin-top: 8px; line-height: 1.5;">Faster for managers reviewing multiple team members</div>
+        <div style="font-family: var(--font-display); font-size: 48px; font-weight: 800; color: #34D399; letter-spacing: -2px; line-height: 1;">10×</div>
+        <div style="font-size: 14px; color: #5a8a6e; margin-top: 8px; line-height: 1.5;">Faster for managers reviewing multiple team members</div>
       </div>
     </div>
-    <p style="font-size: 12px; color: var(--slate-600);" class="reveal">* Estimates based on typical review preparation patterns. Your results may vary.</p>
+    <p style="font-size: 12px; color: #3d6b56;" class="reveal">* Estimates based on typical review preparation patterns. Your results may vary.</p>
   </div>
 </section>
 
 <!-- WHO IT'S FOR -->
-<section style="background: var(--slate-50);">
+<section style="background: #f0faf5;">
   <div class="section-inner">
-    <div class="section-label reveal">👥 Who It's For</div>
+    <div class="section-label reveal" style="color:var(--green-dark);">👥 Who It's For</div>
     <h2 class="section-title reveal">Tracking your own work,<br>or someone else's?</h2>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;">
       <div class="hiw-card reveal" style="background: white;">
         <div style="font-size: 36px; margin-bottom: 16px;">🏆</div>
-        <h3>Tracking yourself</h3>
-        <p style="color: var(--emerald-600); font-size: 13px; font-weight: 600; margin: 8px 0 16px;">Never scramble before a review again.</p>
+        <h3 style="color:#0f172a;">Tracking yourself</h3>
+        <p style="color: var(--green-dark); font-size: 13px; font-weight: 600; margin: 8px 0 16px;">Never scramble before a review again.</p>
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> Log wins, feedback, and learnings as they happen</li>
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> AI generates your review document in minutes</li>
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> Build a clear record for promotions and pay rises</li>
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> Free plan available — no credit card needed</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--green);">→</span> Log wins, feedback, and learnings as they happen</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--green);">→</span> AI generates your review document in minutes</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--green);">→</span> Build a clear record for promotions and pay rises</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--green);">→</span> Free plan available — no credit card needed</li>
         </ul>
       </div>
       <div class="hiw-card reveal" style="background: white;">
         <div style="font-size: 36px; margin-bottom: 16px;">👔</div>
-        <h3>Managing a team</h3>
-        <p style="color: var(--emerald-600); font-size: 13px; font-weight: 600; margin: 8px 0 16px;">Know your team. Give better reviews.</p>
+        <h3 style="color:#0f172a;">Managing a team</h3>
+        <p style="color: var(--amber); font-size: 13px; font-weight: 600; margin: 8px 0 16px;">Know your team. Give better reviews.</p>
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> Log observations about your people in real time</li>
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> Team dashboard with full performance overview</li>
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> AI generates team reports — saves hours of admin</li>
-          <li style="font-size: 14px; color: var(--slate-500); padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--emerald-500);">→</span> Works for remote, on-site, and distributed teams</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber);">→</span> Log observations about your people in real time</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber);">→</span> Team dashboard with full performance overview</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber);">→</span> AI generates team reports — saves hours of admin</li>
+          <li style="font-size: 14px; color: #3d6b56; padding-left: 18px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber);">→</span> Works for remote, on-site, and distributed teams</li>
         </ul>
       </div>
     </div>
@@ -1141,64 +1413,64 @@ footer {
 <!-- TESTIMONIALS -->
 <section style="background: white;">
   <div class="section-inner">
-    <div class="section-label reveal" style="justify-content: center;">💬 Early Feedback</div>
+    <div class="section-label reveal" style="justify-content: center; color:var(--red);">💬 Early Feedback</div>
     <h2 class="section-title reveal" style="text-align: center;">What people are saying</h2>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
-      <div class="hiw-card reveal" style="background: var(--slate-50);">
-        <p style="font-size: 15px; color: var(--slate-600); line-height: 1.7; font-style: italic; margin-bottom: 20px;">"I used to dread review season because I could never remember what I'd actually done. Perfember fixed that completely."</p>
+      <div class="hiw-card reveal" style="background: #f0faf5;">
+        <p style="font-size: 15px; color: #3d6b56; line-height: 1.7; font-style: italic; margin-bottom: 20px;">"I used to dread review season because I could never remember what I'd actually done. Perfember fixed that completely."</p>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--emerald-100); display: flex; align-items: center; justify-content: center; font-size: 16px;">👩</div>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfdf5; display: flex; align-items: center; justify-content: center; font-size: 16px;">👩</div>
           <div>
-            <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--slate-900);">Sarah M.</div>
-            <div style="font-size: 12px; color: var(--slate-400);">Senior Product Manager</div>
+            <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #0f172a;">Sarah M.</div>
+            <div style="font-size: 12px; color: #5a8a6e;">Senior Product Manager</div>
           </div>
         </div>
       </div>
-      <div class="hiw-card reveal" style="background: var(--slate-50);">
-        <p style="font-size: 15px; color: var(--slate-600); line-height: 1.7; font-style: italic; margin-bottom: 20px;">"Managing a team of 12, tracking who did what was a nightmare. Now I log observations in seconds and the reports write themselves."</p>
+      <div class="hiw-card reveal" style="background: #f0faf5;">
+        <p style="font-size: 15px; color: #3d6b56; line-height: 1.7; font-style: italic; margin-bottom: 20px;">"Managing a team of 12, tracking who did what was a nightmare. Now I log observations in seconds and the reports write themselves."</p>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--emerald-100); display: flex; align-items: center; justify-content: center; font-size: 16px;">👨</div>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #fffbeb; display: flex; align-items: center; justify-content: center; font-size: 16px;">👨</div>
           <div>
-            <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--slate-900);">James T.</div>
-            <div style="font-size: 12px; color: var(--slate-400);">Engineering Manager</div>
+            <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #0f172a;">James T.</div>
+            <div style="font-size: 12px; color: #5a8a6e;">Engineering Manager</div>
           </div>
         </div>
       </div>
-      <div class="hiw-card reveal" style="background: var(--slate-50);">
-        <p style="font-size: 15px; color: var(--slate-600); line-height: 1.7; font-style: italic; margin-bottom: 20px;">"The voice note feature is a game changer. I log things between meetings. By review time I have months of detailed evidence."</p>
+      <div class="hiw-card reveal" style="background: #f0faf5;">
+        <p style="font-size: 15px; color: #3d6b56; line-height: 1.7; font-style: italic; margin-bottom: 20px;">"The voice note feature is a game changer. I log things between meetings. By review time I have months of detailed evidence."</p>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--emerald-100); display: flex; align-items: center; justify-content: center; font-size: 16px;">👩</div>
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: #fef2f2; display: flex; align-items: center; justify-content: center; font-size: 16px;">👩</div>
           <div>
-            <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--slate-900);">Priya K.</div>
-            <div style="font-size: 12px; color: var(--slate-400);">Marketing Lead</div>
+            <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #0f172a;">Priya K.</div>
+            <div style="font-size: 12px; color: #5a8a6e;">Marketing Lead</div>
           </div>
         </div>
       </div>
     </div>
     <div style="margin-top: 64px; text-align: center;">
-      <div class="section-label reveal" style="justify-content: center;">🌍 Industry Category Packs</div>
+      <div class="section-label reveal" style="justify-content: center; color:var(--amber);">🌍 Industry Category Packs</div>
       <h2 class="section-title reveal" style="text-align: center;">Every industry.<br>One app.</h2>
-      <p style="font-size: 16px; color: var(--slate-500); max-width: 580px; margin: 0 auto 48px; line-height: 1.6;" class="reveal">Every industry has its own language. Perfember comes with pre-built category packs so logging feels natural from day one — no setup, no configuration, just tap and go.</p>
+      <p style="font-size: 16px; color: #3d6b56; max-width: 580px; margin: 0 auto 48px; line-height: 1.6;" class="reveal">Every industry has its own language. Perfember comes with pre-built category packs so logging feels natural from day one — no setup, no configuration, just tap and go.</p>
 
       <!-- All packs overview -->
-      <div class="reveal" style="max-width: 860px; margin: 0 auto 40px; background: var(--slate-50); border: 1.5px solid var(--slate-200); border-radius: 16px; padding: 28px 32px; text-align: left;">
-        <div style="font-size: 12px; font-weight: 700; color: var(--slate-400); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;">All category packs</div>
+      <div class="reveal" style="max-width: 860px; margin: 0 auto 40px; background: var(--slate-50); border: 1.5px solid rgba(10,122,90,0.2); border-radius: 16px; padding: 28px 32px; text-align: left;">
+        <div style="font-size: 12px; font-weight: 700; color: #5a8a6e; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;">All category packs</div>
         <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--emerald-300); color: var(--emerald-700); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏨 Hospitality</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--emerald-300); color: var(--emerald-700); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🍽️ Restaurant</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--emerald-300); color: var(--emerald-700); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏥 Healthcare</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--emerald-300); color: var(--emerald-700); padding: 5px 12px; border-radius: 100px; font-weight: 500;">💻 Technology</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--emerald-300); color: var(--emerald-700); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏗️ Construction</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--emerald-300); color: var(--emerald-700); padding: 5px 12px; border-radius: 100px; font-weight: 500;">📚 Education</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏛️ Government &amp; Public Sector</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">⚖️ Legal</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">💰 Finance &amp; Banking</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🛍️ Retail</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🚔 Emergency Services</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">✈️ Aviation &amp; Transport</span>
-          <span style="font-size: 12px; background: white; border: 1.5px solid var(--slate-200); color: var(--slate-600); padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏋️ Sport &amp; Fitness</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid #a7f3d0; color: #047857; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏨 Hospitality</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid #fde68a; color: #92400e; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🍽️ Restaurant</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid #fecaca; color: #991b1b; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏥 Healthcare</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid #a7f3d0; color: #047857; padding: 5px 12px; border-radius: 100px; font-weight: 500;">💻 Technology</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid #fde68a; color: #92400e; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏗️ Construction</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid #fecaca; color: #991b1b; padding: 5px 12px; border-radius: 100px; font-weight: 500;">📚 Education</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏛️ Government &amp; Public Sector</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">⚖️ Legal</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">💰 Finance &amp; Banking</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🛍️ Retail</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🚔 Emergency Services</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">✈️ Aviation &amp; Transport</span>
+          <span style="font-size: 12px; background: white; border: 1.5px solid rgba(10,122,90,0.2); color: #3d6b56; padding: 5px 12px; border-radius: 100px; font-weight: 500;">🏋️ Sport &amp; Fitness</span>
         </div>
-        <p style="font-size: 12px; color: var(--slate-400); margin-top: 16px;">Don't see yours? <a href="/cdn-cgi/l/email-protection#c3aaada5ac83b3a6b1a5a6aea1a6b1eda0acaefcb0b6a1a9a6a0b7fe8da6b4e3aaada7b6b0b7b1bae3b3a2a0a8e3b1a6b2b6a6b0b7" style="color: var(--emerald-600); text-decoration: none; font-weight: 500;">Request a pack →</a></p>
+        <p style="font-size: 12px; color: #5a8a6e; margin-top: 16px;">Don't see yours? <a href="/cdn-cgi/l/email-protection#c3aaada5ac83b3a6b1a5a6aea1a6b1eda0acaefcb0b6a1a9a6a0b7fe8da6b4e3aaada7b6b0b7b1bae3b3a2a0a8e3b1a6b2b6a6b0b7" style="color: var(--emerald-600); text-decoration: none; font-weight: 500;">Request a pack →</a></p>
       </div>
 
       <!-- Industry tabs -->
@@ -1366,29 +1638,29 @@ footer {
 
       </div>
 
-      <p style="font-size: 14px; color: var(--slate-400); margin-top: 32px;" class="reveal">Can't find your exact category? Every pack is fully customisable inside the app.</p>
+      <p style="font-size: 14px; color: #5a8a6e; margin-top: 32px;" class="reveal">Can't find your exact category? Every pack is fully customisable inside the app.</p>
     </div>
 
 <style>
 .ind-tab {
-  background: var(--slate-100); border: 1.5px solid var(--slate-200);
-  color: var(--slate-600); padding: 10px 18px; border-radius: 100px;
+  background: var(--slate-100); border: 1.5px solid rgba(10,122,90,0.2);
+  color: #3d6b56; padding: 10px 18px; border-radius: 100px;
   font-size: 14px; font-weight: 500; cursor: pointer;
   font-family: var(--font-body); transition: all 0.2s;
 }
 .ind-tab:hover { border-color: var(--emerald-300); color: var(--emerald-700); background: var(--emerald-50); }
 .ind-tab-active { background: var(--emerald-500) !important; border-color: var(--emerald-500) !important; color: white !important; font-weight: 600 !important; }
-.ind-panel { background: var(--slate-50); border: 1.5px solid var(--slate-200); border-radius: 20px; padding: 36px; text-align: left; }
+.ind-panel { background: var(--slate-50); border: 1.5px solid rgba(10,122,90,0.2); border-radius: 20px; padding: 36px; text-align: left; }
 .ind-panel-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
 .ind-panel-icon { font-size: 40px; flex-shrink: 0; }
-.ind-panel-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--slate-900); margin-bottom: 6px; }
-.ind-panel-desc { font-size: 15px; color: var(--slate-500); line-height: 1.6; }
+.ind-panel-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+.ind-panel-desc { font-size: 15px; color: #3d6b56; line-height: 1.6; }
 .ind-categories { display: flex; flex-wrap: wrap; gap: 10px; }
 .ind-cat {
   display: inline-flex; align-items: center; gap: 8px;
-  background: white; border: 1.5px solid var(--slate-200);
+  background: white; border: 1.5px solid rgba(10,122,90,0.2);
   border-radius: 100px; padding: 8px 16px;
-  font-size: 13px; font-weight: 500; color: var(--slate-700);
+  font-size: 13px; font-weight: 500; color: #1a2e25;
   transition: all 0.2s;
 }
 .ind-cat:hover { border-color: var(--emerald-300); background: var(--emerald-50); color: var(--emerald-700); }
@@ -1416,9 +1688,9 @@ function showIndustry(id) {
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         Get started free
       </a>
-      <a href="/cdn-cgi/l/email-protection#61080f070e2111041307040c0304134f020e0c" class="btn btn-secondary" style="font-size: 16px; padding: 16px 36px; background: transparent; color: var(--slate-300); border-color: var(--slate-600);">Talk to us</a>
+      <a href="/cdn-cgi/l/email-protection#61080f070e2111041307040c0304134f020e0c" class="btn btn-secondary" style="font-size: 16px; padding: 16px 36px; background: transparent; color: var(--slate-300); border-color: #3d6b56;">Talk to us</a>
     </div>
-    <p class="reveal" style="font-size: 13px; color: var(--slate-500); margin-top: 20px;">Free forever plan available. No spam, ever.</p>
+    <p class="reveal" style="font-size: 13px; color: #3d6b56; margin-top: 20px;">Free forever plan available. No spam, ever.</p>
   </div>
 </section>
 
@@ -1426,8 +1698,14 @@ function showIndustry(id) {
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo-icon">P</div>
-      <div class="footer-logo-text">Perfember</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(145deg,#12C58A,#0A7A5A);box-shadow:0 2px 8px rgba(16,185,129,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;flex-shrink:0;">
+          <div style="width:22px;height:5px;border-radius:3px;background:#34D399;"></div>
+          <div style="width:22px;height:5px;border-radius:3px;background:#FBBF24;"></div>
+          <div style="width:22px;height:5px;border-radius:3px;background:#F87171;"></div>
+        </div>
+        <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:white;letter-spacing:-0.5px;">Perfember</span>
+      </div>
     </div>
     <div class="footer-links">
       <a href="#features">Features</a>
